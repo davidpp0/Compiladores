@@ -1,68 +1,78 @@
 %{
-	#include "yasin.tab.h"
+
+#include "yasin.tab.h"
 	
 %}
 
 %option noinput
 %option nounput
 
-%%  //tokens
-//EXPRESSOES BINARIAS
-"="	return IGUAL;
-"==" return IGUALIGUAL;
-"+" return SOMA;
-"-" return SUBTRACAO;
-"*" return MULTIPLICACAO;
-"/" return DIVISAO;
-"mod" return MOD;
-"^" return POTENCIA;
-"!=" return DIFERENTE;
-"<" return MENOR;
-">" return MAIOR;
-"<=" return MENORIGUAL;
-">=" return MAIORIGUAL;
-"and" return AND;
-"or" return OR;
+%%
 
-"!" return NOT;
+"="     { return IGUAL; }
+"=="    { return IGUALIGUAL; }
+"+"     { return SOMA; }
+"-"     { return SUBTRACAO; }
+"*"     { return MULTIPLICACAO; }
+"/"     { return DIVISAO; }
+"mod"   { return MOD; }
+"^"     { return POTENCIA; }
+"!="    { return DIFERENTE; }
+"<"     { return MENOR; }
+">"     { return MAIOR; }
+"<="    { return MENORIGUAL; }
+">="    { return MAIORIGUAL; }
 
-//simbolos
-"." return PONTO;
-"," return VIRGULA;
-":" return DOISPONTOS;
-";" return PONTOVIRGULA;
-"[" return PARECTE;
-"]" return PARECTD;
-"{" return CHAVETAE;
-"}" return CHAVETAD;
-"(" return PARE;
-")" return PARD;
-\" return CLICA;
+"not"   { return NOT; }
+"and"   { return AND; }
+"or"    { return OR; }
 
-//PALAVRAS RESERVADAS
-"define" return DEFINE;
-"int" return INT;
-"float" return FLOAT;
-"string" return STRING;
-"bool" return BOOL;
-"void" return VOID;
-"if" return IF;
-"then" return THEN;
-"else" return ELSE;
-"while" return WHILE;
-"do" return DO;
-"return" return RETURN;
-"break" return BREAK;
-"next" return NEXT;
+"." 	{ return PONTO; }
+"," 	{ return VIRGULA; }
+":" 	{ return DOISPONTOS; }
+";" 	{ return PONTOVIRGULA; }
+"[" 	{ return PARECTE; }
+"]" 	{ return PARECTD; }
+"{"	 	{ return CHAVETAE; }
+"}" 	{ return CHAVETAD; }
+"(" 	{ return PARE; }
+")" 	{ return PARD; }
 
-[a-z]{
-	yylval.letra = strdup(yytext);  /*coloca o valor na stack do Bison*/
-	return LETRA;		/*Retorna o tipo do token*/
+
+
+"define" { return DEF; }
+"int" 	 { return INT; }
+"float"  { return FLOAT; }
+"string" { return STRING; }
+"bool"   { return BOOL; }
+"void"   { return VOID; }
+"if"	 { return IF; }
+"then"   { return THEN; }
+"else"   { return ELSE; }
+"while"  { return WHILE; }
+"do"     { return DO; }
+"return" { return RETURN; }
+"break"  { return BREAK; }
+"next"   { return NEXT; }
+"print"  { return PRINT; }
+"input"  { return INPUT; }
+"output" { return OUTPUT; }
+
+"true" {
+	yylval.boolean = 1;
+
+	return BOOL_LITERAL;
 }
-[ \n\t]
 
+"false" {
+	yylval.boolean = 0;
+
+	return BOOL_LITERAL;
+}
+
+[0-9]+   { yylval.val = atoi(yytext); return NUM; }
+\".*\"    { yylval.str = strdup(yytext); return STR; }
+[0-9]*\.[0-9]+([eE][\+\-]?[0-9]+)? 		{ yylval.flt = atof(yytext); return FLT; }
+[a-zA-Z][a-zA-Z0-9]*       { yylval.id = strdup(yytext); return ID; }
 
 %%
-int yywrap(){
-	return 1;
-}

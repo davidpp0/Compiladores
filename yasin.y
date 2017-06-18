@@ -1,77 +1,126 @@
 %{
 	#include <stdio.h>
+	#include <math.h>
+	#include <string.h>
+	#include <stdlib.h>
 
-	int yylex(void);				//main
-	void yyerror(const char *);		//funcao que retorna erros
+	int yylex(void);				
+	void yyerror(const char *);		
 %}
 
-%error-verbose  //mostra erros
+%error-verbose  
 
-union{
-	char *letter;
+%union{
+	int val;
+    double flt;
+    char *str;
+    char *id;
+    int boolean;
 }
 
 //IDENTIFICAR ESTRUTURAS DE DADOS
+%token ID STR NUM FLT BOOL_LITERAL
+%token PRINT
+%token PONTO VIRGULA DOISPONTOS
+%token DEF IF THEN ELSE WHILE DO RETURN BREAK NEXT
+%token INT FLOAT BOOL VOID STRING
+%token INPUT OUTPUT
+%token PARE PARD CHAVETAE CHAVETAD PARECTE PARECTD
 
-%token char *letter
-%token IGUAL
-%token IGUALIGUAL
-%token SOMA
-%token SUBTRACAO
-%token MULTIPLICACAO
-%token DIVISAO
-%token MOD
-%token POTENCIA
-%token DIFERENTE
-%token MENOR
-%token MAIOR
-%token MENORIGUAL
-%token MAIORIGUAL
-%token AND
-%token OR
-%token NOT
+%left PONTOVIRGULA
+%left SOMA SUBTRACAO
+%left  MULTIPLICACAO DIVISAO MOD 
+%left OR
+%left AND
+%left NOT
 
-%token PONTO
-%token VIRGULA
-%token DOISPONTOS
-%token PONTOVIRGULA
-%token PARECTE
-%token PARECTD
-%token CHAVETAE
-%token CHAVETAD
-%token PARE
-%token PARD
-%token CLICA
+%right POTENCIA
+%right IGUAL
 
-%token DEFINE 
-%token INT
-%token FLOAT
-%token STRING
-%token BOOL
-%token VOID
-%token IF
-%token THEN
-%token ELSE
-%token WHILE
-%token DO
-%token RETURN 
-%token BREAK
-%token NEXT
-
+%nonassoc IGUALIGUAL MENOR MAIOR MENORIGUAL MAIORIGUAL DIFERENTE
 
 %%
+
 //REGRAS DE SINTAXE
 
+program: stmlist
+		;
 
+stmlist: decl PONTOVIRGULA
+	   | decl PONTOVIRGULA stmlist 
+	   ;
 
+decl: idlist DOISPONTOS tipo 
+	| idlist DOISPONTOS tipo IGUAL expressao 
+	| ID IGUAL expressao
+	| func
+	| IF expressao THEN CHAVETAE stmlist CHAVETAD
+	| IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
+	| WHILE expressao DO CHAVETAE stmlist CHAVETAD
+	| PRINT PARE expressao PARD 
+	| RETURN expressao 
+	| INPUT PARE ID PARD 
+	| OUTPUT PARE ID PARD 
+	| BREAK
+	| DEF ID tipo
+	;
 
+func: ID PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+	| ID PARE PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+	| ID PARE PARD
+	| ID PARE arglista PARD
+	;
+
+idlist: ID
+	  | ID VIRGULA idlist
+	  | NUM
+	  | NUM idlist
+	  ;
+
+tipo: INT
+	| FLOAT
+	| STRING
+	| BOOL
+	| VOID
+	;
+
+arglista: idlist DOISPONTOS tipo
+  	    | idlist DOISPONTOS tipo VIRGULA arglista
+  	    | idlist
+		;
+
+expressao: ID
+	 	 | STR
+		 | expressao operacao expressao
+		 | BOOL_LITERAL
+		 | FLT
+		 | NUM
+		 | func
+		 ;
+operacao: SOMA
+		| SUBTRACAO
+		| DIVISAO
+		| MULTIPLICACAO
+		| MOD
+		| POTENCIA
+		| IGUAL
+		| IGUALIGUAL
+		| DIFERENTE
+		| MENOR
+		| MAIOR
+		| MENORIGUAL
+		| MAIORIGUAL
+		| AND
+		| OR
+		| NOT
+		;
 
 %%
 
 void yyerror(const char *msg){
-	fprintf(stderr, "error: %s\n", msg); //print dos erros
+	fprintf(stderr, "error: %s\n", msg);
 }
 
 int main(){
-	return yyparse();   //chama funcao de parse para criar arvore
+	return yyparse();
 }
