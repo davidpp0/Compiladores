@@ -62,6 +62,7 @@ decl: idlist DOISPONTOS tipo
 	| INPUT PARE ID PARD 
 	| OUTPUT PARE ID PARD 
 	| BREAK
+	| NEXT
 	| DEF ID tipo
 	;
 

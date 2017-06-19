@@ -1,0 +1,1281 @@
+Terminals unused in grammar
+
+   PONTO
+   NEXT
+   PARECTE
+   PARECTD
+
+
+State 77 conflicts: 16 shift/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: stmlist
+
+    2 stmlist: decl PONTOVIRGULA
+    3        | decl PONTOVIRGULA stmlist
+
+    4 decl: idlist DOISPONTOS tipo
+    5     | idlist DOISPONTOS tipo IGUAL expressao
+    6     | ID IGUAL expressao
+    7     | func
+    8     | IF expressao THEN CHAVETAE stmlist CHAVETAD
+    9     | IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
+   10     | WHILE expressao DO CHAVETAE stmlist CHAVETAD
+   11     | PRINT PARE expressao PARD
+   12     | RETURN expressao
+   13     | INPUT PARE ID PARD
+   14     | OUTPUT PARE ID PARD
+   15     | BREAK
+   16     | DEF ID tipo
+
+   17 func: ID PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   18     | ID PARE PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   19     | ID PARE PARD
+   20     | ID PARE arglista PARD
+
+   21 idlist: ID
+   22       | ID VIRGULA idlist
+   23       | NUM
+   24       | NUM idlist
+
+   25 tipo: INT
+   26     | FLOAT
+   27     | STRING
+   28     | BOOL
+   29     | VOID
+
+   30 arglista: idlist DOISPONTOS tipo
+   31         | idlist DOISPONTOS tipo VIRGULA arglista
+   32         | idlist
+
+   33 expressao: ID
+   34          | STR
+   35          | expressao operacao expressao
+   36          | BOOL_LITERAL
+   37          | FLT
+   38          | NUM
+   39          | func
+
+   40 operacao: SOMA
+   41         | SUBTRACAO
+   42         | DIVISAO
+   43         | MULTIPLICACAO
+   44         | MOD
+   45         | POTENCIA
+   46         | IGUAL
+   47         | IGUALIGUAL
+   48         | DIFERENTE
+   49         | MENOR
+   50         | MAIOR
+   51         | MENORIGUAL
+   52         | MAIORIGUAL
+   53         | AND
+   54         | OR
+   55         | NOT
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+ID (258) 6 13 14 16 17 18 19 20 21 22 33
+STR (259) 34
+NUM (260) 23 24 38
+FLT (261) 37
+BOOL_LITERAL (262) 36
+PRINT (263) 11
+PONTO (264)
+VIRGULA (265) 22 31
+DOISPONTOS (266) 4 5 17 18 30 31
+DEF (267) 16
+IF (268) 8 9
+THEN (269) 8 9
+ELSE (270) 9
+WHILE (271) 10
+DO (272) 10
+RETURN (273) 12
+BREAK (274) 15
+NEXT (275)
+INT (276) 25
+FLOAT (277) 26
+BOOL (278) 28
+VOID (279) 29
+STRING (280) 27
+INPUT (281) 13
+OUTPUT (282) 14
+PARE (283) 11 13 14 17 18 19 20
+PARD (284) 11 13 14 17 18 19 20
+CHAVETAE (285) 8 9 10 17 18
+CHAVETAD (286) 8 9 10 17 18
+PARECTE (287)
+PARECTD (288)
+PONTOVIRGULA (289) 2 3
+SOMA (290) 40
+SUBTRACAO (291) 41
+MULTIPLICACAO (292) 43
+DIVISAO (293) 42
+MOD (294) 44
+OR (295) 54
+AND (296) 53
+NOT (297) 55
+POTENCIA (298) 45
+IGUAL (299) 5 6 46
+IGUALIGUAL (300) 47
+MENOR (301) 49
+MAIOR (302) 50
+MENORIGUAL (303) 51
+MAIORIGUAL (304) 52
+DIFERENTE (305) 48
+
+
+Nonterminals, with rules where they appear
+
+$accept (51)
+    on left: 0
+program (52)
+    on left: 1, on right: 0
+stmlist (53)
+    on left: 2 3, on right: 1 3 8 9 10 17 18
+decl (54)
+    on left: 4 5 6 7 8 9 10 11 12 13 14 15 16, on right: 2 3
+func (55)
+    on left: 17 18 19 20, on right: 7 39
+idlist (56)
+    on left: 21 22 23 24, on right: 4 5 22 24 30 31 32
+tipo (57)
+    on left: 25 26 27 28 29, on right: 4 5 16 17 18 30 31
+arglista (58)
+    on left: 30 31 32, on right: 17 20 31
+expressao (59)
+    on left: 33 34 35 36 37 38 39, on right: 5 6 8 9 10 11 12 35
+operacao (60)
+    on left: 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55, on right:
+    35
+
+
+State 0
+
+    0 $accept: . program $end
+
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    INPUT   shift, and go to state 9
+    OUTPUT  shift, and go to state 10
+
+    program  go to state 11
+    stmlist  go to state 12
+    decl     go to state 13
+    func     go to state 14
+    idlist   go to state 15
+
+
+State 1
+
+    6 decl: ID . IGUAL expressao
+   17 func: ID . PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   18     | ID . PARE PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   19     | ID . PARE PARD
+   20     | ID . PARE arglista PARD
+   21 idlist: ID .
+   22       | ID . VIRGULA idlist
+
+    VIRGULA  shift, and go to state 16
+    PARE     shift, and go to state 17
+    IGUAL    shift, and go to state 18
+
+    $default  reduce using rule 21 (idlist)
+
+
+State 2
+
+   23 idlist: NUM .
+   24       | NUM . idlist
+
+    ID   shift, and go to state 19
+    NUM  shift, and go to state 2
+
+    $default  reduce using rule 23 (idlist)
+
+    idlist  go to state 20
+
+
+State 3
+
+   11 decl: PRINT . PARE expressao PARD
+
+    PARE  shift, and go to state 21
+
+
+State 4
+
+   16 decl: DEF . ID tipo
+
+    ID  shift, and go to state 22
+
+
+State 5
+
+    8 decl: IF . expressao THEN CHAVETAE stmlist CHAVETAD
+    9     | IF . expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
+
+    ID            shift, and go to state 23
+    STR           shift, and go to state 24
+    NUM           shift, and go to state 25
+    FLT           shift, and go to state 26
+    BOOL_LITERAL  shift, and go to state 27
+
+    func       go to state 28
+    expressao  go to state 29
+
+
+State 6
+
+   10 decl: WHILE . expressao DO CHAVETAE stmlist CHAVETAD
+
+    ID            shift, and go to state 23
+    STR           shift, and go to state 24
+    NUM           shift, and go to state 25
+    FLT           shift, and go to state 26
+    BOOL_LITERAL  shift, and go to state 27
+
+    func       go to state 28
+    expressao  go to state 30
+
+
+State 7
+
+   12 decl: RETURN . expressao
+
+    ID            shift, and go to state 23
+    STR           shift, and go to state 24
+    NUM           shift, and go to state 25
+    FLT           shift, and go to state 26
+    BOOL_LITERAL  shift, and go to state 27
+
+    func       go to state 28
+    expressao  go to state 31
+
+
+State 8
+
+   15 decl: BREAK .
+
+    $default  reduce using rule 15 (decl)
+
+
+State 9
+
+   13 decl: INPUT . PARE ID PARD
+
+    PARE  shift, and go to state 32
+
+
+State 10
+
+   14 decl: OUTPUT . PARE ID PARD
+
+    PARE  shift, and go to state 33
+
+
+State 11
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 34
+
+
+State 12
+
+    1 program: stmlist .
+
+    $default  reduce using rule 1 (program)
+
+
+State 13
+
+    2 stmlist: decl . PONTOVIRGULA
+    3        | decl . PONTOVIRGULA stmlist
+
+    PONTOVIRGULA  shift, and go to state 35
+
+
+State 14
+
+    7 decl: func .
+
+    $default  reduce using rule 7 (decl)
+
+
+State 15
+
+    4 decl: idlist . DOISPONTOS tipo
+    5     | idlist . DOISPONTOS tipo IGUAL expressao
+
+    DOISPONTOS  shift, and go to state 36
+
+
+State 16
+
+   22 idlist: ID VIRGULA . idlist
+
+    ID   shift, and go to state 19
+    NUM  shift, and go to state 2
+
+    idlist  go to state 37
+
+
+State 17
+
+   17 func: ID PARE . arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   18     | ID PARE . PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   19     | ID PARE . PARD
+   20     | ID PARE . arglista PARD
+
+    ID    shift, and go to state 19
+    NUM   shift, and go to state 2
+    PARD  shift, and go to state 38
+
+    idlist    go to state 39
+    arglista  go to state 40
+
+
+State 18
+
+    6 decl: ID IGUAL . expressao
+
+    ID            shift, and go to state 23
+    STR           shift, and go to state 24
+    NUM           shift, and go to state 25
+    FLT           shift, and go to state 26
+    BOOL_LITERAL  shift, and go to state 27
+
+    func       go to state 28
+    expressao  go to state 41
+
+
+State 19
+
+   21 idlist: ID .
+   22       | ID . VIRGULA idlist
+
+    VIRGULA  shift, and go to state 16
+
+    $default  reduce using rule 21 (idlist)
+
+
+State 20
+
+   24 idlist: NUM idlist .
+
+    $default  reduce using rule 24 (idlist)
+
+
+State 21
+
+   11 decl: PRINT PARE . expressao PARD
+
+    ID            shift, and go to state 23
+    STR           shift, and go to state 24
+    NUM           shift, and go to state 25
+    FLT           shift, and go to state 26
+    BOOL_LITERAL  shift, and go to state 27
+
+    func       go to state 28
+    expressao  go to state 42
+
+
+State 22
+
+   16 decl: DEF ID . tipo
+
+    INT     shift, and go to state 43
+    FLOAT   shift, and go to state 44
+    BOOL    shift, and go to state 45
+    VOID    shift, and go to state 46
+    STRING  shift, and go to state 47
+
+    tipo  go to state 48
+
+
+State 23
+
+   17 func: ID . PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   18     | ID . PARE PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   19     | ID . PARE PARD
+   20     | ID . PARE arglista PARD
+   33 expressao: ID .
+
+    PARE  shift, and go to state 17
+
+    $default  reduce using rule 33 (expressao)
+
+
+State 24
+
+   34 expressao: STR .
+
+    $default  reduce using rule 34 (expressao)
+
+
+State 25
+
+   38 expressao: NUM .
+
+    $default  reduce using rule 38 (expressao)
+
+
+State 26
+
+   37 expressao: FLT .
+
+    $default  reduce using rule 37 (expressao)
+
+
+State 27
+
+   36 expressao: BOOL_LITERAL .
+
+    $default  reduce using rule 36 (expressao)
+
+
+State 28
+
+   39 expressao: func .
+
+    $default  reduce using rule 39 (expressao)
+
+
+State 29
+
+    8 decl: IF expressao . THEN CHAVETAE stmlist CHAVETAD
+    9     | IF expressao . THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
+   35 expressao: expressao . operacao expressao
+
+    THEN           shift, and go to state 49
+    SOMA           shift, and go to state 50
+    SUBTRACAO      shift, and go to state 51
+    MULTIPLICACAO  shift, and go to state 52
+    DIVISAO        shift, and go to state 53
+    MOD            shift, and go to state 54
+    OR             shift, and go to state 55
+    AND            shift, and go to state 56
+    NOT            shift, and go to state 57
+    POTENCIA       shift, and go to state 58
+    IGUAL          shift, and go to state 59
+    IGUALIGUAL     shift, and go to state 60
+    MENOR          shift, and go to state 61
+    MAIOR          shift, and go to state 62
+    MENORIGUAL     shift, and go to state 63
+    MAIORIGUAL     shift, and go to state 64
+    DIFERENTE      shift, and go to state 65
+
+    operacao  go to state 66
+
+
+State 30
+
+   10 decl: WHILE expressao . DO CHAVETAE stmlist CHAVETAD
+   35 expressao: expressao . operacao expressao
+
+    DO             shift, and go to state 67
+    SOMA           shift, and go to state 50
+    SUBTRACAO      shift, and go to state 51
+    MULTIPLICACAO  shift, and go to state 52
+    DIVISAO        shift, and go to state 53
+    MOD            shift, and go to state 54
+    OR             shift, and go to state 55
+    AND            shift, and go to state 56
+    NOT            shift, and go to state 57
+    POTENCIA       shift, and go to state 58
+    IGUAL          shift, and go to state 59
+    IGUALIGUAL     shift, and go to state 60
+    MENOR          shift, and go to state 61
+    MAIOR          shift, and go to state 62
+    MENORIGUAL     shift, and go to state 63
+    MAIORIGUAL     shift, and go to state 64
+    DIFERENTE      shift, and go to state 65
+
+    operacao  go to state 66
+
+
+State 31
+
+   12 decl: RETURN expressao .
+   35 expressao: expressao . operacao expressao
+
+    SOMA           shift, and go to state 50
+    SUBTRACAO      shift, and go to state 51
+    MULTIPLICACAO  shift, and go to state 52
+    DIVISAO        shift, and go to state 53
+    MOD            shift, and go to state 54
+    OR             shift, and go to state 55
+    AND            shift, and go to state 56
+    NOT            shift, and go to state 57
+    POTENCIA       shift, and go to state 58
+    IGUAL          shift, and go to state 59
+    IGUALIGUAL     shift, and go to state 60
+    MENOR          shift, and go to state 61
+    MAIOR          shift, and go to state 62
+    MENORIGUAL     shift, and go to state 63
+    MAIORIGUAL     shift, and go to state 64
+    DIFERENTE      shift, and go to state 65
+
+    $default  reduce using rule 12 (decl)
+
+    operacao  go to state 66
+
+
+State 32
+
+   13 decl: INPUT PARE . ID PARD
+
+    ID  shift, and go to state 68
+
+
+State 33
+
+   14 decl: OUTPUT PARE . ID PARD
+
+    ID  shift, and go to state 69
+
+
+State 34
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 35
+
+    2 stmlist: decl PONTOVIRGULA .
+    3        | decl PONTOVIRGULA . stmlist
+
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    INPUT   shift, and go to state 9
+    OUTPUT  shift, and go to state 10
+
+    $default  reduce using rule 2 (stmlist)
+
+    stmlist  go to state 70
+    decl     go to state 13
+    func     go to state 14
+    idlist   go to state 15
+
+
+State 36
+
+    4 decl: idlist DOISPONTOS . tipo
+    5     | idlist DOISPONTOS . tipo IGUAL expressao
+
+    INT     shift, and go to state 43
+    FLOAT   shift, and go to state 44
+    BOOL    shift, and go to state 45
+    VOID    shift, and go to state 46
+    STRING  shift, and go to state 47
+
+    tipo  go to state 71
+
+
+State 37
+
+   22 idlist: ID VIRGULA idlist .
+
+    $default  reduce using rule 22 (idlist)
+
+
+State 38
+
+   18 func: ID PARE PARD . DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   19     | ID PARE PARD .
+
+    DOISPONTOS  shift, and go to state 72
+
+    $default  reduce using rule 19 (func)
+
+
+State 39
+
+   30 arglista: idlist . DOISPONTOS tipo
+   31         | idlist . DOISPONTOS tipo VIRGULA arglista
+   32         | idlist .
+
+    DOISPONTOS  shift, and go to state 73
+
+    $default  reduce using rule 32 (arglista)
+
+
+State 40
+
+   17 func: ID PARE arglista . PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   20     | ID PARE arglista . PARD
+
+    PARD  shift, and go to state 74
+
+
+State 41
+
+    6 decl: ID IGUAL expressao .
+   35 expressao: expressao . operacao expressao
+
+    SOMA           shift, and go to state 50
+    SUBTRACAO      shift, and go to state 51
+    MULTIPLICACAO  shift, and go to state 52
+    DIVISAO        shift, and go to state 53
+    MOD            shift, and go to state 54
+    OR             shift, and go to state 55
+    AND            shift, and go to state 56
+    NOT            shift, and go to state 57
+    POTENCIA       shift, and go to state 58
+    IGUAL          shift, and go to state 59
+    IGUALIGUAL     shift, and go to state 60
+    MENOR          shift, and go to state 61
+    MAIOR          shift, and go to state 62
+    MENORIGUAL     shift, and go to state 63
+    MAIORIGUAL     shift, and go to state 64
+    DIFERENTE      shift, and go to state 65
+
+    $default  reduce using rule 6 (decl)
+
+    operacao  go to state 66
+
+
+State 42
+
+   11 decl: PRINT PARE expressao . PARD
+   35 expressao: expressao . operacao expressao
+
+    PARD           shift, and go to state 75
+    SOMA           shift, and go to state 50
+    SUBTRACAO      shift, and go to state 51
+    MULTIPLICACAO  shift, and go to state 52
+    DIVISAO        shift, and go to state 53
+    MOD            shift, and go to state 54
+    OR             shift, and go to state 55
+    AND            shift, and go to state 56
+    NOT            shift, and go to state 57
+    POTENCIA       shift, and go to state 58
+    IGUAL          shift, and go to state 59
+    IGUALIGUAL     shift, and go to state 60
+    MENOR          shift, and go to state 61
+    MAIOR          shift, and go to state 62
+    MENORIGUAL     shift, and go to state 63
+    MAIORIGUAL     shift, and go to state 64
+    DIFERENTE      shift, and go to state 65
+
+    operacao  go to state 66
+
+
+State 43
+
+   25 tipo: INT .
+
+    $default  reduce using rule 25 (tipo)
+
+
+State 44
+
+   26 tipo: FLOAT .
+
+    $default  reduce using rule 26 (tipo)
+
+
+State 45
+
+   28 tipo: BOOL .
+
+    $default  reduce using rule 28 (tipo)
+
+
+State 46
+
+   29 tipo: VOID .
+
+    $default  reduce using rule 29 (tipo)
+
+
+State 47
+
+   27 tipo: STRING .
+
+    $default  reduce using rule 27 (tipo)
+
+
+State 48
+
+   16 decl: DEF ID tipo .
+
+    $default  reduce using rule 16 (decl)
+
+
+State 49
+
+    8 decl: IF expressao THEN . CHAVETAE stmlist CHAVETAD
+    9     | IF expressao THEN . CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
+
+    CHAVETAE  shift, and go to state 76
+
+
+State 50
+
+   40 operacao: SOMA .
+
+    $default  reduce using rule 40 (operacao)
+
+
+State 51
+
+   41 operacao: SUBTRACAO .
+
+    $default  reduce using rule 41 (operacao)
+
+
+State 52
+
+   43 operacao: MULTIPLICACAO .
+
+    $default  reduce using rule 43 (operacao)
+
+
+State 53
+
+   42 operacao: DIVISAO .
+
+    $default  reduce using rule 42 (operacao)
+
+
+State 54
+
+   44 operacao: MOD .
+
+    $default  reduce using rule 44 (operacao)
+
+
+State 55
+
+   54 operacao: OR .
+
+    $default  reduce using rule 54 (operacao)
+
+
+State 56
+
+   53 operacao: AND .
+
+    $default  reduce using rule 53 (operacao)
+
+
+State 57
+
+   55 operacao: NOT .
+
+    $default  reduce using rule 55 (operacao)
+
+
+State 58
+
+   45 operacao: POTENCIA .
+
+    $default  reduce using rule 45 (operacao)
+
+
+State 59
+
+   46 operacao: IGUAL .
+
+    $default  reduce using rule 46 (operacao)
+
+
+State 60
+
+   47 operacao: IGUALIGUAL .
+
+    $default  reduce using rule 47 (operacao)
+
+
+State 61
+
+   49 operacao: MENOR .
+
+    $default  reduce using rule 49 (operacao)
+
+
+State 62
+
+   50 operacao: MAIOR .
+
+    $default  reduce using rule 50 (operacao)
+
+
+State 63
+
+   51 operacao: MENORIGUAL .
+
+    $default  reduce using rule 51 (operacao)
+
+
+State 64
+
+   52 operacao: MAIORIGUAL .
+
+    $default  reduce using rule 52 (operacao)
+
+
+State 65
+
+   48 operacao: DIFERENTE .
+
+    $default  reduce using rule 48 (operacao)
+
+
+State 66
+
+   35 expressao: expressao operacao . expressao
+
+    ID            shift, and go to state 23
+    STR           shift, and go to state 24
+    NUM           shift, and go to state 25
+    FLT           shift, and go to state 26
+    BOOL_LITERAL  shift, and go to state 27
+
+    func       go to state 28
+    expressao  go to state 77
+
+
+State 67
+
+   10 decl: WHILE expressao DO . CHAVETAE stmlist CHAVETAD
+
+    CHAVETAE  shift, and go to state 78
+
+
+State 68
+
+   13 decl: INPUT PARE ID . PARD
+
+    PARD  shift, and go to state 79
+
+
+State 69
+
+   14 decl: OUTPUT PARE ID . PARD
+
+    PARD  shift, and go to state 80
+
+
+State 70
+
+    3 stmlist: decl PONTOVIRGULA stmlist .
+
+    $default  reduce using rule 3 (stmlist)
+
+
+State 71
+
+    4 decl: idlist DOISPONTOS tipo .
+    5     | idlist DOISPONTOS tipo . IGUAL expressao
+
+    IGUAL  shift, and go to state 81
+
+    $default  reduce using rule 4 (decl)
+
+
+State 72
+
+   18 func: ID PARE PARD DOISPONTOS . tipo CHAVETAE stmlist CHAVETAD
+
+    INT     shift, and go to state 43
+    FLOAT   shift, and go to state 44
+    BOOL    shift, and go to state 45
+    VOID    shift, and go to state 46
+    STRING  shift, and go to state 47
+
+    tipo  go to state 82
+
+
+State 73
+
+   30 arglista: idlist DOISPONTOS . tipo
+   31         | idlist DOISPONTOS . tipo VIRGULA arglista
+
+    INT     shift, and go to state 43
+    FLOAT   shift, and go to state 44
+    BOOL    shift, and go to state 45
+    VOID    shift, and go to state 46
+    STRING  shift, and go to state 47
+
+    tipo  go to state 83
+
+
+State 74
+
+   17 func: ID PARE arglista PARD . DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
+   20     | ID PARE arglista PARD .
+
+    DOISPONTOS  shift, and go to state 84
+
+    $default  reduce using rule 20 (func)
+
+
+State 75
+
+   11 decl: PRINT PARE expressao PARD .
+
+    $default  reduce using rule 11 (decl)
+
+
+State 76
+
+    8 decl: IF expressao THEN CHAVETAE . stmlist CHAVETAD
+    9     | IF expressao THEN CHAVETAE . stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
+
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    INPUT   shift, and go to state 9
+    OUTPUT  shift, and go to state 10
+
+    stmlist  go to state 85
+    decl     go to state 13
+    func     go to state 14
+    idlist   go to state 15
+
+
+State 77
+
+   35 expressao: expressao . operacao expressao
+   35          | expressao operacao expressao .
+
+    SOMA           shift, and go to state 50
+    SUBTRACAO      shift, and go to state 51
+    MULTIPLICACAO  shift, and go to state 52
+    DIVISAO        shift, and go to state 53
+    MOD            shift, and go to state 54
+    OR             shift, and go to state 55
+    AND            shift, and go to state 56
+    NOT            shift, and go to state 57
+    POTENCIA       shift, and go to state 58
+    IGUAL          shift, and go to state 59
+    IGUALIGUAL     shift, and go to state 60
+    MENOR          shift, and go to state 61
+    MAIOR          shift, and go to state 62
+    MENORIGUAL     shift, and go to state 63
+    MAIORIGUAL     shift, and go to state 64
+    DIFERENTE      shift, and go to state 65
+
+    SOMA           [reduce using rule 35 (expressao)]
+    SUBTRACAO      [reduce using rule 35 (expressao)]
+    MULTIPLICACAO  [reduce using rule 35 (expressao)]
+    DIVISAO        [reduce using rule 35 (expressao)]
+    MOD            [reduce using rule 35 (expressao)]
+    OR             [reduce using rule 35 (expressao)]
+    AND            [reduce using rule 35 (expressao)]
+    NOT            [reduce using rule 35 (expressao)]
+    POTENCIA       [reduce using rule 35 (expressao)]
+    IGUAL          [reduce using rule 35 (expressao)]
+    IGUALIGUAL     [reduce using rule 35 (expressao)]
+    MENOR          [reduce using rule 35 (expressao)]
+    MAIOR          [reduce using rule 35 (expressao)]
+    MENORIGUAL     [reduce using rule 35 (expressao)]
+    MAIORIGUAL     [reduce using rule 35 (expressao)]
+    DIFERENTE      [reduce using rule 35 (expressao)]
+    $default       reduce using rule 35 (expressao)
+
+    operacao  go to state 66
+
+
+State 78
+
+   10 decl: WHILE expressao DO CHAVETAE . stmlist CHAVETAD
+
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    INPUT   shift, and go to state 9
+    OUTPUT  shift, and go to state 10
+
+    stmlist  go to state 86
+    decl     go to state 13
+    func     go to state 14
+    idlist   go to state 15
+
+
+State 79
+
+   13 decl: INPUT PARE ID PARD .
+
+    $default  reduce using rule 13 (decl)
+
+
+State 80
+
+   14 decl: OUTPUT PARE ID PARD .
+
+    $default  reduce using rule 14 (decl)
+
+
+State 81
+
+    5 decl: idlist DOISPONTOS tipo IGUAL . expressao
+
+    ID            shift, and go to state 23
+    STR           shift, and go to state 24
+    NUM           shift, and go to state 25
+    FLT           shift, and go to state 26
+    BOOL_LITERAL  shift, and go to state 27
+
+    func       go to state 28
+    expressao  go to state 87
+
+
+State 82
+
+   18 func: ID PARE PARD DOISPONTOS tipo . CHAVETAE stmlist CHAVETAD
+
+    CHAVETAE  shift, and go to state 88
+
+
+State 83
+
+   30 arglista: idlist DOISPONTOS tipo .
+   31         | idlist DOISPONTOS tipo . VIRGULA arglista
+
+    VIRGULA  shift, and go to state 89
+
+    $default  reduce using rule 30 (arglista)
+
+
+State 84
+
+   17 func: ID PARE arglista PARD DOISPONTOS . tipo CHAVETAE stmlist CHAVETAD
+
+    INT     shift, and go to state 43
+    FLOAT   shift, and go to state 44
+    BOOL    shift, and go to state 45
+    VOID    shift, and go to state 46
+    STRING  shift, and go to state 47
+
+    tipo  go to state 90
+
+
+State 85
+
+    8 decl: IF expressao THEN CHAVETAE stmlist . CHAVETAD
+    9     | IF expressao THEN CHAVETAE stmlist . CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
+
+    CHAVETAD  shift, and go to state 91
+
+
+State 86
+
+   10 decl: WHILE expressao DO CHAVETAE stmlist . CHAVETAD
+
+    CHAVETAD  shift, and go to state 92
+
+
+State 87
+
+    5 decl: idlist DOISPONTOS tipo IGUAL expressao .
+   35 expressao: expressao . operacao expressao
+
+    SOMA           shift, and go to state 50
+    SUBTRACAO      shift, and go to state 51
+    MULTIPLICACAO  shift, and go to state 52
+    DIVISAO        shift, and go to state 53
+    MOD            shift, and go to state 54
+    OR             shift, and go to state 55
+    AND            shift, and go to state 56
+    NOT            shift, and go to state 57
+    POTENCIA       shift, and go to state 58
+    IGUAL          shift, and go to state 59
+    IGUALIGUAL     shift, and go to state 60
+    MENOR          shift, and go to state 61
+    MAIOR          shift, and go to state 62
+    MENORIGUAL     shift, and go to state 63
+    MAIORIGUAL     shift, and go to state 64
+    DIFERENTE      shift, and go to state 65
+
+    $default  reduce using rule 5 (decl)
+
+    operacao  go to state 66
+
+
+State 88
+
+   18 func: ID PARE PARD DOISPONTOS tipo CHAVETAE . stmlist CHAVETAD
+
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    INPUT   shift, and go to state 9
+    OUTPUT  shift, and go to state 10
+
+    stmlist  go to state 93
+    decl     go to state 13
+    func     go to state 14
+    idlist   go to state 15
+
+
+State 89
+
+   31 arglista: idlist DOISPONTOS tipo VIRGULA . arglista
+
+    ID   shift, and go to state 19
+    NUM  shift, and go to state 2
+
+    idlist    go to state 39
+    arglista  go to state 94
+
+
+State 90
+
+   17 func: ID PARE arglista PARD DOISPONTOS tipo . CHAVETAE stmlist CHAVETAD
+
+    CHAVETAE  shift, and go to state 95
+
+
+State 91
+
+    8 decl: IF expressao THEN CHAVETAE stmlist CHAVETAD .
+    9     | IF expressao THEN CHAVETAE stmlist CHAVETAD . ELSE CHAVETAE stmlist CHAVETAD
+
+    ELSE  shift, and go to state 96
+
+    $default  reduce using rule 8 (decl)
+
+
+State 92
+
+   10 decl: WHILE expressao DO CHAVETAE stmlist CHAVETAD .
+
+    $default  reduce using rule 10 (decl)
+
+
+State 93
+
+   18 func: ID PARE PARD DOISPONTOS tipo CHAVETAE stmlist . CHAVETAD
+
+    CHAVETAD  shift, and go to state 97
+
+
+State 94
+
+   31 arglista: idlist DOISPONTOS tipo VIRGULA arglista .
+
+    $default  reduce using rule 31 (arglista)
+
+
+State 95
+
+   17 func: ID PARE arglista PARD DOISPONTOS tipo CHAVETAE . stmlist CHAVETAD
+
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    INPUT   shift, and go to state 9
+    OUTPUT  shift, and go to state 10
+
+    stmlist  go to state 98
+    decl     go to state 13
+    func     go to state 14
+    idlist   go to state 15
+
+
+State 96
+
+    9 decl: IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE . CHAVETAE stmlist CHAVETAD
+
+    CHAVETAE  shift, and go to state 99
+
+
+State 97
+
+   18 func: ID PARE PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD .
+
+    $default  reduce using rule 18 (func)
+
+
+State 98
+
+   17 func: ID PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist . CHAVETAD
+
+    CHAVETAD  shift, and go to state 100
+
+
+State 99
+
+    9 decl: IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE . stmlist CHAVETAD
+
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    INPUT   shift, and go to state 9
+    OUTPUT  shift, and go to state 10
+
+    stmlist  go to state 101
+    decl     go to state 13
+    func     go to state 14
+    idlist   go to state 15
+
+
+State 100
+
+   17 func: ID PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD .
+
+    $default  reduce using rule 17 (func)
+
+
+State 101
+
+    9 decl: IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist . CHAVETAD
+
+    CHAVETAD  shift, and go to state 102
+
+
+State 102
+
+    9 decl: IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD .
+
+    $default  reduce using rule 9 (decl)
