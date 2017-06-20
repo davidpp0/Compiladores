@@ -50,20 +50,20 @@ program: stmlist          {root($1);};
 stmlist: decl PONTOVIRGULA                   {$$ = newStmList(decl_pontovirg,$1,NULL);};
 	   | decl PONTOVIRGULA stmlist 			 {$$ = newStmList(decl_pontovirg_stmList,$1,$2);};
 
-decl: idlist DOISPONTOS tipo 					{$$ = newIdList(idlist_dpontos_tipo,$1,$3,NULL,NULL,NULL,NULL,NULL);};
-	| idlist DOISPONTOS tipo IGUAL expressao   	{$$ = newIdList(idlist_dpontos_tipo_igual_exp,$1,$3,$5,NULL,NULL,NULL,NULL);};
-	| ID IGUAL expressao						{$$ = newIdList(id_igual_exp,NULL,NULL,$3,NULL,NULL,NULL,$1);};
-	| func										{$$ = newIdList(funcao,NULL,NULL,NULL,NULL,NULL,$1,NULL);};
-	| IF expressao THEN CHAVETAE stmlist CHAVETAD       {$$ = newIdList(if_exp_then_stmList,NULL,NULL,NULL,$2,$5,NULL,NULL);};    
-	| IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD      {$$ = newIdList(if_exp_then_stmList_else_stmList,NULL,NULL,NULL,$2,$5,$9,NULL);};
-	| WHILE expressao DO CHAVETAE stmlist CHAVETAD     {$$ = newIdList(while_exp_do_stmList,NULL,NULL,$2,$5,NULL,NULL,NULL);};
-	| PRINT PARE expressao PARD                         {$$ = newIdList(print_,NULL,NULL,$3,NULL,NULL,NULL,NULL);};
-	| RETURN expressao                               {$$ = newIdList(return_,NULL,NULL,$2,NULL,NULL,NULL,NULL);};
-	| INPUT PARE ID PARD               				{$$ = newIdList(input_id,NULL,NULL,NULL,NULL,NULL,NULL,$3);};
-	| OUTPUT PARE ID PARD 						{$$ = newIdList(output_id,NULL,NULL,NULL,NULL,NULL,NULL,$3);};
-	| BREAK									{$$ = newIdList(break_,NULL,NULL,NULL,NULL,NULL,NULL,NULL);};
-	| NEXT										{$$ = newIdList(next_,NULL,NULL,NULL,NULL,NULL,NULL,NULL);};
-	| DEF ID tipo 							{$$ = newIdList(def_id_type,NULL,$3,NULL,NULL,NULL,NULL,$2);};
+decl: idlist DOISPONTOS tipo 					{$$ = newDecl(idlist_dpontos_tipo,$1,$3,NULL,NULL,NULL,NULL,NULL);};
+	| idlist DOISPONTOS tipo IGUAL expressao   	{$$ = newDecl(idlist_dpontos_tipo_igual_exp,$1,$3,$5,NULL,NULL,NULL,NULL);};
+	| ID IGUAL expressao						{$$ = newDecl(id_igual_exp,NULL,NULL,$3,NULL,NULL,NULL,$1);};
+	| func										{$$ = newDecl(funcao,NULL,NULL,NULL,NULL,NULL,$1,NULL);};
+	| IF expressao THEN CHAVETAE stmlist CHAVETAD       {$$ = newDecl(if_exp_then_stmList,NULL,NULL,NULL,$2,$5,NULL,NULL);};    
+	| IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD      {$$ = newDecl(if_exp_then_stmList_else_stmList,NULL,NULL,NULL,$2,$5,$9,NULL);};
+	| WHILE expressao DO CHAVETAE stmlist CHAVETAD     {$$ = newDecl(while_exp_do_stmList,NULL,NULL,$2,$5,NULL,NULL,NULL);};
+	| PRINT PARE expressao PARD                         {$$ = newDecl(print_,NULL,NULL,$3,NULL,NULL,NULL,NULL);};
+	| RETURN expressao                               {$$ = newDecl(return_,NULL,NULL,$2,NULL,NULL,NULL,NULL);};
+	| INPUT PARE ID PARD               				{$$ = newDecl(input_id,NULL,NULL,NULL,NULL,NULL,NULL,$3);};
+	| OUTPUT PARE ID PARD 						{$$ = newDecl(output_id,NULL,NULL,NULL,NULL,NULL,NULL,$3);};
+	| BREAK									{$$ = newDecl(break_,NULL,NULL,NULL,NULL,NULL,NULL,NULL);};
+	| NEXT										{$$ = newDecl(next_,NULL,NULL,NULL,NULL,NULL,NULL,NULL);};
+	| DEF ID tipo 							{$$ = newDecl(def_id_type,NULL,$3,NULL,NULL,NULL,NULL,$2);};
 	
 
 func: ID PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD   {$$ = newFunc(id_arglist_dpontos_tipo_stmList,$1,$6,$3,$8);};
