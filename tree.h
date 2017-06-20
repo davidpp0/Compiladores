@@ -20,6 +20,7 @@ typedef enum declType{
 	input_id,
 	output_id,
 	break_,
+	next_,
 	def_id_type,
 }declType;
 
