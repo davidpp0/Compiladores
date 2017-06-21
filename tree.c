@@ -57,7 +57,7 @@ ArgLista *newArgLista(argListaType type, IdList *idList, Tipo *tipo, ArgLista *a
 	return s;
 }
 
-Expressao *newExpressao(expressaoType type, char *id, Expressao *expressao1, Expressao *expressao2, Operacao *operacao, int num, Func *func, float flt, bool booleano, char *str){
+Expressao *newExpressao(expressaoType type, char *id, Expressao *expressao1, Expressao *expressao2, Operacao *operacao, int num, Func *func, double flt, int boolean, char *str){
 	newExpressao *s = malloc(sizeof(struct newExpressao));
 	s->type = type;
 	s->id = id;

@@ -12,11 +12,23 @@
 %error-verbose  
 
 %union{
-	int val;
+	int num;
     double flt;
     char *str;
     char *id;
     int boolean;
+    struct StmList *stmList;
+    struct StmList *stmList1;
+    struct StmList *stmList2;
+    struct Decl *decl;
+    struct Func *func;
+    struct IdList *idList;
+    struct ArgLista *argLista;
+    struct Tipo *tipo;
+    struct Operacao *operacao;
+    struct Expressao *expressao;
+    struct Expressao *expressao1;
+    struct Expressao *expressao2;
 }
 
 //IDENTIFICAR ESTRUTURAS DE DADOS
@@ -39,6 +51,15 @@
 %right IGUAL
 
 %nonassoc IGUALIGUAL MENOR MAIOR MENORIGUAL MAIORIGUAL DIFERENTE
+
+%type <stmlist> stmlist
+%type <decl> decl
+%type <func> func
+%type <idlist> idlist
+%type <tipo> tipo
+%type <arglista> arglista
+%type <operacao> operacao
+%type <expressao> expressao
 
 %%
 
