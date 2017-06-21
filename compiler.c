@@ -7,6 +7,7 @@ void printStmList (StmList *root){
 	if (root->type == decl_pontovirg ){
 		if (root->decl != NULL){
 			printDecl(root->decl);
+			printf(";\n");
 		}
 
 	}else if (root->type == decl_pontovirg_stmList){
@@ -14,7 +15,9 @@ void printStmList (StmList *root){
 			printDecl(root->decl);
 		}
 		if (root->stmList != NULL){
+			printf("; ");
 			printStmList(root->stmList);
+			printf("\n");
 		}
 	}
 }
@@ -26,49 +29,63 @@ void printDecl (Decl *root){
 			printIdList(root->idList);
 		}
 		if (root->tipo != NULL){
+			printf(": ");
 			printTipo(root->tipo);
+			printf("\n");
 		}
 
 	}else if (root->type == idlist_dpontos_tipo_igual_exp){
 		if (root->idList != NULL){
 			printIdList(root->idList);
 		}if (root->tipo != NULL){
+			printf(": ");
 			printTipo(root->tipo);
 		}if (root->expressao != NULL){
-			printExpressao(root->expressao)
+			printf("= ");
+			printExpressao(root->expressao);
+			printf("\n");
 		}
 
 	}else if (root->type == id_igual_exp){
 		if (root->expressao != NULL){
-			printExpressao(root->expressao)
+			printf("%s = ",root->id);
+			printExpressao(root->expressao);
+			printf("\n");
 		}
 
 	}else if (root->type == funcao){
 		if (root->func != NULL){
-			printFunc(root->func)
+			printFunc(root->func);
 		}
 
 	}else if (root->type == if_exp_then_stmList){
 		if (root->expressao != NULL){
-			printExpressao(root->expressao)
+			printf("if ");
+			printExpressao(root->expressao);
 		}if (root->stmList1 != NULL){
-			printStmList(root->stmList1)
+			printf("then ", );
+			printStmList(root->stmList1);
+			printf("\n");
 		}
 
 	}else if (root->type == if_exp_then_stmList_else_stmList){
 		if (root->expressao != NULL){
-			printExpressao(root->expressao)
+			printf("if ");			
+			printExpressao(root->expressao);
 		}if (root->stmList1 != NULL){
-			printStmList(root->stmList1)
+			printf("then ", );
+			printStmList(root->stmList1);
 		}if (root->stmList2 != NULL){
-			printStmList(root->stmList2)
+			printf("else ");
+			printStmList(root->stmList2);
+			printf("\n");
 		}
 
 	}else if (root->type == while_exp_do_stmList){
 		if (root->expressao != NULL){
-			printExpressao(root->expressao)
+			printExpressao(root->expressao);
 		}if (root->stmList1 != NULL){
-			printStmList(root->stmList1)
+			printStmList(root->stmList1);
 		}
 
 	}else if (root->type == print_){
