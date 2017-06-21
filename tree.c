@@ -32,7 +32,7 @@ Func *newFunc( funcType type, char *id, Tipo *tipo, ArgLista *argLista, StmList 
 	return s;
 }
 
-IdList *newIdList(idList type, char *id, int num, IdList *idList){
+IdList *newIdList(idList type, char *id, int val, IdList *idList){
 	newIdList *s = malloc(sizeof(struct newIdList));
 	s->type = type;
 	s->id = id;

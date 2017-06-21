@@ -12,7 +12,7 @@
 %error-verbose  
 
 %union{
-	int num;
+	int val;
     double flt;
     char *str;
     char *id;
@@ -32,7 +32,11 @@
 }
 
 //IDENTIFICAR ESTRUTURAS DE DADOS
-%token ID STR NUM FLT BOOL_LITERAL
+%token <id> ID
+%token <str> STR
+%token <val> NUM
+%token <flt> FLT
+%token <bool> BOOL_LITERAL
 %token PRINT
 %token PONTO VIRGULA DOISPONTOS
 %token DEF IF THEN ELSE WHILE DO RETURN BREAK NEXT
