@@ -5,10 +5,10 @@ Terminals unused in grammar
    PARECTD
 
 
-Estado 78 conflictos: 16 shift/reduce
+State 78 conflicts: 16 shift/reduce
 
 
-Gramática
+Grammar
 
     0 $accept: program $end
 
@@ -78,7 +78,7 @@ Gramática
    56         | NOT
 
 
-Terminais, com as regras aonde aparecem
+Terminals, with rules where they appear
 
 $end (0) 0
 error (256)
@@ -132,57 +132,55 @@ MAIORIGUAL (304) 53
 DIFERENTE (305) 49
 
 
-Não-terminais, com as regras aonde aparecem
+Nonterminals, with rules where they appear
 
 $accept (51)
-    à esquerda: 0
+    on left: 0
 program (52)
-    à esquerda: 1, à direita: 0
+    on left: 1, on right: 0
 stmlist (53)
-    à esquerda: 2 3, à direita: 1 3 8 9 10 18 19
+    on left: 2 3, on right: 1 3 8 9 10 18 19
 decl (54)
-    à esquerda: 4 5 6 7 8 9 10 11 12 13 14 15 16 17, à direita: 2
-    3
+    on left: 4 5 6 7 8 9 10 11 12 13 14 15 16 17, on right: 2 3
 func (55)
-    à esquerda: 18 19 20 21, à direita: 7 40
+    on left: 18 19 20 21, on right: 7 40
 idlist (56)
-    à esquerda: 22 23 24 25, à direita: 4 5 23 25 31 32 33
+    on left: 22 23 24 25, on right: 4 5 23 25 31 32 33
 tipo (57)
-    à esquerda: 26 27 28 29 30, à direita: 4 5 17 18 19 31 32
+    on left: 26 27 28 29 30, on right: 4 5 17 18 19 31 32
 arglista (58)
-    à esquerda: 31 32 33, à direita: 18 21 32
+    on left: 31 32 33, on right: 18 21 32
 expressao (59)
-    à esquerda: 34 35 36 37 38 39 40, à direita: 5 6 8 9 10 11 12
-    36
+    on left: 34 35 36 37 38 39 40, on right: 5 6 8 9 10 11 12 36
 operacao (60)
-    à esquerda: 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56, à direita:
+    on left: 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56, on right:
     36
 
 
-Estado0
+State 0
 
     0 $accept: . program $end
 
-    ID      fazer shift, e ir para o estado 1
-    NUM     fazer shift, e ir para o estado 2
-    PRINT   fazer shift, e ir para o estado 3
-    DEF     fazer shift, e ir para o estado 4
-    IF      fazer shift, e ir para o estado 5
-    WHILE   fazer shift, e ir para o estado 6
-    RETURN  fazer shift, e ir para o estado 7
-    BREAK   fazer shift, e ir para o estado 8
-    NEXT    fazer shift, e ir para o estado 9
-    INPUT   fazer shift, e ir para o estado 10
-    OUTPUT  fazer shift, e ir para o estado 11
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    NEXT    shift, and go to state 9
+    INPUT   shift, and go to state 10
+    OUTPUT  shift, and go to state 11
 
-    program  ir para o estado 12
-    stmlist  ir para o estado 13
-    decl     ir para o estado 14
-    func     ir para o estado 15
-    idlist   ir para o estado 16
+    program  go to state 12
+    stmlist  go to state 13
+    decl     go to state 14
+    func     go to state 15
+    idlist   go to state 16
 
 
-Estado1
+State 1
 
     6 decl: ID . IGUAL expressao
    18 func: ID . PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
@@ -192,232 +190,232 @@ Estado1
    22 idlist: ID .
    23       | ID . VIRGULA idlist
 
-    VIRGULA  fazer shift, e ir para o estado 17
-    PARE     fazer shift, e ir para o estado 18
-    IGUAL    fazer shift, e ir para o estado 19
+    VIRGULA  shift, and go to state 17
+    PARE     shift, and go to state 18
+    IGUAL    shift, and go to state 19
 
-    $default  reduzir usando a regra 22 (idlist)
+    $default  reduce using rule 22 (idlist)
 
 
-Estado2
+State 2
 
    24 idlist: NUM .
    25       | NUM . idlist
 
-    ID   fazer shift, e ir para o estado 20
-    NUM  fazer shift, e ir para o estado 2
+    ID   shift, and go to state 20
+    NUM  shift, and go to state 2
 
-    $default  reduzir usando a regra 24 (idlist)
+    $default  reduce using rule 24 (idlist)
 
-    idlist  ir para o estado 21
+    idlist  go to state 21
 
 
-Estado3
+State 3
 
    11 decl: PRINT . PARE expressao PARD
 
-    PARE  fazer shift, e ir para o estado 22
+    PARE  shift, and go to state 22
 
 
-Estado4
+State 4
 
    17 decl: DEF . ID tipo
 
-    ID  fazer shift, e ir para o estado 23
+    ID  shift, and go to state 23
 
 
-Estado5
+State 5
 
     8 decl: IF . expressao THEN CHAVETAE stmlist CHAVETAD
     9     | IF . expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
 
-    ID            fazer shift, e ir para o estado 24
-    STR           fazer shift, e ir para o estado 25
-    NUM           fazer shift, e ir para o estado 26
-    FLT           fazer shift, e ir para o estado 27
-    BOOL_LITERAL  fazer shift, e ir para o estado 28
+    ID            shift, and go to state 24
+    STR           shift, and go to state 25
+    NUM           shift, and go to state 26
+    FLT           shift, and go to state 27
+    BOOL_LITERAL  shift, and go to state 28
 
-    func       ir para o estado 29
-    expressao  ir para o estado 30
+    func       go to state 29
+    expressao  go to state 30
 
 
-Estado6
+State 6
 
    10 decl: WHILE . expressao DO CHAVETAE stmlist CHAVETAD
 
-    ID            fazer shift, e ir para o estado 24
-    STR           fazer shift, e ir para o estado 25
-    NUM           fazer shift, e ir para o estado 26
-    FLT           fazer shift, e ir para o estado 27
-    BOOL_LITERAL  fazer shift, e ir para o estado 28
+    ID            shift, and go to state 24
+    STR           shift, and go to state 25
+    NUM           shift, and go to state 26
+    FLT           shift, and go to state 27
+    BOOL_LITERAL  shift, and go to state 28
 
-    func       ir para o estado 29
-    expressao  ir para o estado 31
+    func       go to state 29
+    expressao  go to state 31
 
 
-Estado7
+State 7
 
    12 decl: RETURN . expressao
 
-    ID            fazer shift, e ir para o estado 24
-    STR           fazer shift, e ir para o estado 25
-    NUM           fazer shift, e ir para o estado 26
-    FLT           fazer shift, e ir para o estado 27
-    BOOL_LITERAL  fazer shift, e ir para o estado 28
+    ID            shift, and go to state 24
+    STR           shift, and go to state 25
+    NUM           shift, and go to state 26
+    FLT           shift, and go to state 27
+    BOOL_LITERAL  shift, and go to state 28
 
-    func       ir para o estado 29
-    expressao  ir para o estado 32
+    func       go to state 29
+    expressao  go to state 32
 
 
-Estado8
+State 8
 
    15 decl: BREAK .
 
-    $default  reduzir usando a regra 15 (decl)
+    $default  reduce using rule 15 (decl)
 
 
-Estado9
+State 9
 
    16 decl: NEXT .
 
-    $default  reduzir usando a regra 16 (decl)
+    $default  reduce using rule 16 (decl)
 
 
-Estado10
+State 10
 
    13 decl: INPUT . PARE ID PARD
 
-    PARE  fazer shift, e ir para o estado 33
+    PARE  shift, and go to state 33
 
 
-Estado11
+State 11
 
    14 decl: OUTPUT . PARE ID PARD
 
-    PARE  fazer shift, e ir para o estado 34
+    PARE  shift, and go to state 34
 
 
-Estado12
+State 12
 
     0 $accept: program . $end
 
-    $end  fazer shift, e ir para o estado 35
+    $end  shift, and go to state 35
 
 
-Estado13
+State 13
 
     1 program: stmlist .
 
-    $default  reduzir usando a regra 1 (program)
+    $default  reduce using rule 1 (program)
 
 
-Estado14
+State 14
 
     2 stmlist: decl . PONTOVIRGULA
     3        | decl . PONTOVIRGULA stmlist
 
-    PONTOVIRGULA  fazer shift, e ir para o estado 36
+    PONTOVIRGULA  shift, and go to state 36
 
 
-Estado15
+State 15
 
     7 decl: func .
 
-    $default  reduzir usando a regra 7 (decl)
+    $default  reduce using rule 7 (decl)
 
 
-Estado16
+State 16
 
     4 decl: idlist . DOISPONTOS tipo
     5     | idlist . DOISPONTOS tipo IGUAL expressao
 
-    DOISPONTOS  fazer shift, e ir para o estado 37
+    DOISPONTOS  shift, and go to state 37
 
 
-Estado17
+State 17
 
    23 idlist: ID VIRGULA . idlist
 
-    ID   fazer shift, e ir para o estado 20
-    NUM  fazer shift, e ir para o estado 2
+    ID   shift, and go to state 20
+    NUM  shift, and go to state 2
 
-    idlist  ir para o estado 38
+    idlist  go to state 38
 
 
-Estado18
+State 18
 
    18 func: ID PARE . arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
    19     | ID PARE . PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
    20     | ID PARE . PARD
    21     | ID PARE . arglista PARD
 
-    ID    fazer shift, e ir para o estado 20
-    NUM   fazer shift, e ir para o estado 2
-    PARD  fazer shift, e ir para o estado 39
+    ID    shift, and go to state 20
+    NUM   shift, and go to state 2
+    PARD  shift, and go to state 39
 
-    idlist    ir para o estado 40
-    arglista  ir para o estado 41
+    idlist    go to state 40
+    arglista  go to state 41
 
 
-Estado19
+State 19
 
     6 decl: ID IGUAL . expressao
 
-    ID            fazer shift, e ir para o estado 24
-    STR           fazer shift, e ir para o estado 25
-    NUM           fazer shift, e ir para o estado 26
-    FLT           fazer shift, e ir para o estado 27
-    BOOL_LITERAL  fazer shift, e ir para o estado 28
+    ID            shift, and go to state 24
+    STR           shift, and go to state 25
+    NUM           shift, and go to state 26
+    FLT           shift, and go to state 27
+    BOOL_LITERAL  shift, and go to state 28
 
-    func       ir para o estado 29
-    expressao  ir para o estado 42
+    func       go to state 29
+    expressao  go to state 42
 
 
-Estado20
+State 20
 
    22 idlist: ID .
    23       | ID . VIRGULA idlist
 
-    VIRGULA  fazer shift, e ir para o estado 17
+    VIRGULA  shift, and go to state 17
 
-    $default  reduzir usando a regra 22 (idlist)
+    $default  reduce using rule 22 (idlist)
 
 
-Estado21
+State 21
 
    25 idlist: NUM idlist .
 
-    $default  reduzir usando a regra 25 (idlist)
+    $default  reduce using rule 25 (idlist)
 
 
-Estado22
+State 22
 
    11 decl: PRINT PARE . expressao PARD
 
-    ID            fazer shift, e ir para o estado 24
-    STR           fazer shift, e ir para o estado 25
-    NUM           fazer shift, e ir para o estado 26
-    FLT           fazer shift, e ir para o estado 27
-    BOOL_LITERAL  fazer shift, e ir para o estado 28
+    ID            shift, and go to state 24
+    STR           shift, and go to state 25
+    NUM           shift, and go to state 26
+    FLT           shift, and go to state 27
+    BOOL_LITERAL  shift, and go to state 28
 
-    func       ir para o estado 29
-    expressao  ir para o estado 43
+    func       go to state 29
+    expressao  go to state 43
 
 
-Estado23
+State 23
 
    17 decl: DEF ID . tipo
 
-    INT     fazer shift, e ir para o estado 44
-    FLOAT   fazer shift, e ir para o estado 45
-    BOOL    fazer shift, e ir para o estado 46
-    VOID    fazer shift, e ir para o estado 47
-    STRING  fazer shift, e ir para o estado 48
+    INT     shift, and go to state 44
+    FLOAT   shift, and go to state 45
+    BOOL    shift, and go to state 46
+    VOID    shift, and go to state 47
+    STRING  shift, and go to state 48
 
-    tipo  ir para o estado 49
+    tipo  go to state 49
 
 
-Estado24
+State 24
 
    18 func: ID . PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
    19     | ID . PARE PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
@@ -425,873 +423,873 @@ Estado24
    21     | ID . PARE arglista PARD
    34 expressao: ID .
 
-    PARE  fazer shift, e ir para o estado 18
+    PARE  shift, and go to state 18
 
-    $default  reduzir usando a regra 34 (expressao)
+    $default  reduce using rule 34 (expressao)
 
 
-Estado25
+State 25
 
    35 expressao: STR .
 
-    $default  reduzir usando a regra 35 (expressao)
+    $default  reduce using rule 35 (expressao)
 
 
-Estado26
+State 26
 
    39 expressao: NUM .
 
-    $default  reduzir usando a regra 39 (expressao)
+    $default  reduce using rule 39 (expressao)
 
 
-Estado27
+State 27
 
    38 expressao: FLT .
 
-    $default  reduzir usando a regra 38 (expressao)
+    $default  reduce using rule 38 (expressao)
 
 
-Estado28
+State 28
 
    37 expressao: BOOL_LITERAL .
 
-    $default  reduzir usando a regra 37 (expressao)
+    $default  reduce using rule 37 (expressao)
 
 
-Estado29
+State 29
 
    40 expressao: func .
 
-    $default  reduzir usando a regra 40 (expressao)
+    $default  reduce using rule 40 (expressao)
 
 
-Estado30
+State 30
 
     8 decl: IF expressao . THEN CHAVETAE stmlist CHAVETAD
     9     | IF expressao . THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
    36 expressao: expressao . operacao expressao
 
-    THEN           fazer shift, e ir para o estado 50
-    SOMA           fazer shift, e ir para o estado 51
-    SUBTRACAO      fazer shift, e ir para o estado 52
-    MULTIPLICACAO  fazer shift, e ir para o estado 53
-    DIVISAO        fazer shift, e ir para o estado 54
-    MOD            fazer shift, e ir para o estado 55
-    OR             fazer shift, e ir para o estado 56
-    AND            fazer shift, e ir para o estado 57
-    NOT            fazer shift, e ir para o estado 58
-    POTENCIA       fazer shift, e ir para o estado 59
-    IGUAL          fazer shift, e ir para o estado 60
-    IGUALIGUAL     fazer shift, e ir para o estado 61
-    MENOR          fazer shift, e ir para o estado 62
-    MAIOR          fazer shift, e ir para o estado 63
-    MENORIGUAL     fazer shift, e ir para o estado 64
-    MAIORIGUAL     fazer shift, e ir para o estado 65
-    DIFERENTE      fazer shift, e ir para o estado 66
+    THEN           shift, and go to state 50
+    SOMA           shift, and go to state 51
+    SUBTRACAO      shift, and go to state 52
+    MULTIPLICACAO  shift, and go to state 53
+    DIVISAO        shift, and go to state 54
+    MOD            shift, and go to state 55
+    OR             shift, and go to state 56
+    AND            shift, and go to state 57
+    NOT            shift, and go to state 58
+    POTENCIA       shift, and go to state 59
+    IGUAL          shift, and go to state 60
+    IGUALIGUAL     shift, and go to state 61
+    MENOR          shift, and go to state 62
+    MAIOR          shift, and go to state 63
+    MENORIGUAL     shift, and go to state 64
+    MAIORIGUAL     shift, and go to state 65
+    DIFERENTE      shift, and go to state 66
 
-    operacao  ir para o estado 67
+    operacao  go to state 67
 
 
-Estado31
+State 31
 
    10 decl: WHILE expressao . DO CHAVETAE stmlist CHAVETAD
    36 expressao: expressao . operacao expressao
 
-    DO             fazer shift, e ir para o estado 68
-    SOMA           fazer shift, e ir para o estado 51
-    SUBTRACAO      fazer shift, e ir para o estado 52
-    MULTIPLICACAO  fazer shift, e ir para o estado 53
-    DIVISAO        fazer shift, e ir para o estado 54
-    MOD            fazer shift, e ir para o estado 55
-    OR             fazer shift, e ir para o estado 56
-    AND            fazer shift, e ir para o estado 57
-    NOT            fazer shift, e ir para o estado 58
-    POTENCIA       fazer shift, e ir para o estado 59
-    IGUAL          fazer shift, e ir para o estado 60
-    IGUALIGUAL     fazer shift, e ir para o estado 61
-    MENOR          fazer shift, e ir para o estado 62
-    MAIOR          fazer shift, e ir para o estado 63
-    MENORIGUAL     fazer shift, e ir para o estado 64
-    MAIORIGUAL     fazer shift, e ir para o estado 65
-    DIFERENTE      fazer shift, e ir para o estado 66
+    DO             shift, and go to state 68
+    SOMA           shift, and go to state 51
+    SUBTRACAO      shift, and go to state 52
+    MULTIPLICACAO  shift, and go to state 53
+    DIVISAO        shift, and go to state 54
+    MOD            shift, and go to state 55
+    OR             shift, and go to state 56
+    AND            shift, and go to state 57
+    NOT            shift, and go to state 58
+    POTENCIA       shift, and go to state 59
+    IGUAL          shift, and go to state 60
+    IGUALIGUAL     shift, and go to state 61
+    MENOR          shift, and go to state 62
+    MAIOR          shift, and go to state 63
+    MENORIGUAL     shift, and go to state 64
+    MAIORIGUAL     shift, and go to state 65
+    DIFERENTE      shift, and go to state 66
 
-    operacao  ir para o estado 67
+    operacao  go to state 67
 
 
-Estado32
+State 32
 
    12 decl: RETURN expressao .
    36 expressao: expressao . operacao expressao
 
-    SOMA           fazer shift, e ir para o estado 51
-    SUBTRACAO      fazer shift, e ir para o estado 52
-    MULTIPLICACAO  fazer shift, e ir para o estado 53
-    DIVISAO        fazer shift, e ir para o estado 54
-    MOD            fazer shift, e ir para o estado 55
-    OR             fazer shift, e ir para o estado 56
-    AND            fazer shift, e ir para o estado 57
-    NOT            fazer shift, e ir para o estado 58
-    POTENCIA       fazer shift, e ir para o estado 59
-    IGUAL          fazer shift, e ir para o estado 60
-    IGUALIGUAL     fazer shift, e ir para o estado 61
-    MENOR          fazer shift, e ir para o estado 62
-    MAIOR          fazer shift, e ir para o estado 63
-    MENORIGUAL     fazer shift, e ir para o estado 64
-    MAIORIGUAL     fazer shift, e ir para o estado 65
-    DIFERENTE      fazer shift, e ir para o estado 66
+    SOMA           shift, and go to state 51
+    SUBTRACAO      shift, and go to state 52
+    MULTIPLICACAO  shift, and go to state 53
+    DIVISAO        shift, and go to state 54
+    MOD            shift, and go to state 55
+    OR             shift, and go to state 56
+    AND            shift, and go to state 57
+    NOT            shift, and go to state 58
+    POTENCIA       shift, and go to state 59
+    IGUAL          shift, and go to state 60
+    IGUALIGUAL     shift, and go to state 61
+    MENOR          shift, and go to state 62
+    MAIOR          shift, and go to state 63
+    MENORIGUAL     shift, and go to state 64
+    MAIORIGUAL     shift, and go to state 65
+    DIFERENTE      shift, and go to state 66
 
-    $default  reduzir usando a regra 12 (decl)
+    $default  reduce using rule 12 (decl)
 
-    operacao  ir para o estado 67
+    operacao  go to state 67
 
 
-Estado33
+State 33
 
    13 decl: INPUT PARE . ID PARD
 
-    ID  fazer shift, e ir para o estado 69
+    ID  shift, and go to state 69
 
 
-Estado34
+State 34
 
    14 decl: OUTPUT PARE . ID PARD
 
-    ID  fazer shift, e ir para o estado 70
+    ID  shift, and go to state 70
 
 
-Estado35
+State 35
 
     0 $accept: program $end .
 
-    $default  aceite
+    $default  accept
 
 
-Estado36
+State 36
 
     2 stmlist: decl PONTOVIRGULA .
     3        | decl PONTOVIRGULA . stmlist
 
-    ID      fazer shift, e ir para o estado 1
-    NUM     fazer shift, e ir para o estado 2
-    PRINT   fazer shift, e ir para o estado 3
-    DEF     fazer shift, e ir para o estado 4
-    IF      fazer shift, e ir para o estado 5
-    WHILE   fazer shift, e ir para o estado 6
-    RETURN  fazer shift, e ir para o estado 7
-    BREAK   fazer shift, e ir para o estado 8
-    NEXT    fazer shift, e ir para o estado 9
-    INPUT   fazer shift, e ir para o estado 10
-    OUTPUT  fazer shift, e ir para o estado 11
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    NEXT    shift, and go to state 9
+    INPUT   shift, and go to state 10
+    OUTPUT  shift, and go to state 11
 
-    $default  reduzir usando a regra 2 (stmlist)
+    $default  reduce using rule 2 (stmlist)
 
-    stmlist  ir para o estado 71
-    decl     ir para o estado 14
-    func     ir para o estado 15
-    idlist   ir para o estado 16
+    stmlist  go to state 71
+    decl     go to state 14
+    func     go to state 15
+    idlist   go to state 16
 
 
-Estado37
+State 37
 
     4 decl: idlist DOISPONTOS . tipo
     5     | idlist DOISPONTOS . tipo IGUAL expressao
 
-    INT     fazer shift, e ir para o estado 44
-    FLOAT   fazer shift, e ir para o estado 45
-    BOOL    fazer shift, e ir para o estado 46
-    VOID    fazer shift, e ir para o estado 47
-    STRING  fazer shift, e ir para o estado 48
+    INT     shift, and go to state 44
+    FLOAT   shift, and go to state 45
+    BOOL    shift, and go to state 46
+    VOID    shift, and go to state 47
+    STRING  shift, and go to state 48
 
-    tipo  ir para o estado 72
+    tipo  go to state 72
 
 
-Estado38
+State 38
 
    23 idlist: ID VIRGULA idlist .
 
-    $default  reduzir usando a regra 23 (idlist)
+    $default  reduce using rule 23 (idlist)
 
 
-Estado39
+State 39
 
    19 func: ID PARE PARD . DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
    20     | ID PARE PARD .
 
-    DOISPONTOS  fazer shift, e ir para o estado 73
+    DOISPONTOS  shift, and go to state 73
 
-    $default  reduzir usando a regra 20 (func)
+    $default  reduce using rule 20 (func)
 
 
-Estado40
+State 40
 
    31 arglista: idlist . DOISPONTOS tipo
    32         | idlist . DOISPONTOS tipo VIRGULA arglista
    33         | idlist .
 
-    DOISPONTOS  fazer shift, e ir para o estado 74
+    DOISPONTOS  shift, and go to state 74
 
-    $default  reduzir usando a regra 33 (arglista)
+    $default  reduce using rule 33 (arglista)
 
 
-Estado41
+State 41
 
    18 func: ID PARE arglista . PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
    21     | ID PARE arglista . PARD
 
-    PARD  fazer shift, e ir para o estado 75
+    PARD  shift, and go to state 75
 
 
-Estado42
+State 42
 
     6 decl: ID IGUAL expressao .
    36 expressao: expressao . operacao expressao
 
-    SOMA           fazer shift, e ir para o estado 51
-    SUBTRACAO      fazer shift, e ir para o estado 52
-    MULTIPLICACAO  fazer shift, e ir para o estado 53
-    DIVISAO        fazer shift, e ir para o estado 54
-    MOD            fazer shift, e ir para o estado 55
-    OR             fazer shift, e ir para o estado 56
-    AND            fazer shift, e ir para o estado 57
-    NOT            fazer shift, e ir para o estado 58
-    POTENCIA       fazer shift, e ir para o estado 59
-    IGUAL          fazer shift, e ir para o estado 60
-    IGUALIGUAL     fazer shift, e ir para o estado 61
-    MENOR          fazer shift, e ir para o estado 62
-    MAIOR          fazer shift, e ir para o estado 63
-    MENORIGUAL     fazer shift, e ir para o estado 64
-    MAIORIGUAL     fazer shift, e ir para o estado 65
-    DIFERENTE      fazer shift, e ir para o estado 66
+    SOMA           shift, and go to state 51
+    SUBTRACAO      shift, and go to state 52
+    MULTIPLICACAO  shift, and go to state 53
+    DIVISAO        shift, and go to state 54
+    MOD            shift, and go to state 55
+    OR             shift, and go to state 56
+    AND            shift, and go to state 57
+    NOT            shift, and go to state 58
+    POTENCIA       shift, and go to state 59
+    IGUAL          shift, and go to state 60
+    IGUALIGUAL     shift, and go to state 61
+    MENOR          shift, and go to state 62
+    MAIOR          shift, and go to state 63
+    MENORIGUAL     shift, and go to state 64
+    MAIORIGUAL     shift, and go to state 65
+    DIFERENTE      shift, and go to state 66
 
-    $default  reduzir usando a regra 6 (decl)
+    $default  reduce using rule 6 (decl)
 
-    operacao  ir para o estado 67
+    operacao  go to state 67
 
 
-Estado43
+State 43
 
    11 decl: PRINT PARE expressao . PARD
    36 expressao: expressao . operacao expressao
 
-    PARD           fazer shift, e ir para o estado 76
-    SOMA           fazer shift, e ir para o estado 51
-    SUBTRACAO      fazer shift, e ir para o estado 52
-    MULTIPLICACAO  fazer shift, e ir para o estado 53
-    DIVISAO        fazer shift, e ir para o estado 54
-    MOD            fazer shift, e ir para o estado 55
-    OR             fazer shift, e ir para o estado 56
-    AND            fazer shift, e ir para o estado 57
-    NOT            fazer shift, e ir para o estado 58
-    POTENCIA       fazer shift, e ir para o estado 59
-    IGUAL          fazer shift, e ir para o estado 60
-    IGUALIGUAL     fazer shift, e ir para o estado 61
-    MENOR          fazer shift, e ir para o estado 62
-    MAIOR          fazer shift, e ir para o estado 63
-    MENORIGUAL     fazer shift, e ir para o estado 64
-    MAIORIGUAL     fazer shift, e ir para o estado 65
-    DIFERENTE      fazer shift, e ir para o estado 66
+    PARD           shift, and go to state 76
+    SOMA           shift, and go to state 51
+    SUBTRACAO      shift, and go to state 52
+    MULTIPLICACAO  shift, and go to state 53
+    DIVISAO        shift, and go to state 54
+    MOD            shift, and go to state 55
+    OR             shift, and go to state 56
+    AND            shift, and go to state 57
+    NOT            shift, and go to state 58
+    POTENCIA       shift, and go to state 59
+    IGUAL          shift, and go to state 60
+    IGUALIGUAL     shift, and go to state 61
+    MENOR          shift, and go to state 62
+    MAIOR          shift, and go to state 63
+    MENORIGUAL     shift, and go to state 64
+    MAIORIGUAL     shift, and go to state 65
+    DIFERENTE      shift, and go to state 66
 
-    operacao  ir para o estado 67
+    operacao  go to state 67
 
 
-Estado44
+State 44
 
    26 tipo: INT .
 
-    $default  reduzir usando a regra 26 (tipo)
+    $default  reduce using rule 26 (tipo)
 
 
-Estado45
+State 45
 
    27 tipo: FLOAT .
 
-    $default  reduzir usando a regra 27 (tipo)
+    $default  reduce using rule 27 (tipo)
 
 
-Estado46
+State 46
 
    29 tipo: BOOL .
 
-    $default  reduzir usando a regra 29 (tipo)
+    $default  reduce using rule 29 (tipo)
 
 
-Estado47
+State 47
 
    30 tipo: VOID .
 
-    $default  reduzir usando a regra 30 (tipo)
+    $default  reduce using rule 30 (tipo)
 
 
-Estado48
+State 48
 
    28 tipo: STRING .
 
-    $default  reduzir usando a regra 28 (tipo)
+    $default  reduce using rule 28 (tipo)
 
 
-Estado49
+State 49
 
    17 decl: DEF ID tipo .
 
-    $default  reduzir usando a regra 17 (decl)
+    $default  reduce using rule 17 (decl)
 
 
-Estado50
+State 50
 
     8 decl: IF expressao THEN . CHAVETAE stmlist CHAVETAD
     9     | IF expressao THEN . CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
 
-    CHAVETAE  fazer shift, e ir para o estado 77
+    CHAVETAE  shift, and go to state 77
 
 
-Estado51
+State 51
 
    41 operacao: SOMA .
 
-    $default  reduzir usando a regra 41 (operacao)
+    $default  reduce using rule 41 (operacao)
 
 
-Estado52
+State 52
 
    42 operacao: SUBTRACAO .
 
-    $default  reduzir usando a regra 42 (operacao)
+    $default  reduce using rule 42 (operacao)
 
 
-Estado53
+State 53
 
    44 operacao: MULTIPLICACAO .
 
-    $default  reduzir usando a regra 44 (operacao)
+    $default  reduce using rule 44 (operacao)
 
 
-Estado54
+State 54
 
    43 operacao: DIVISAO .
 
-    $default  reduzir usando a regra 43 (operacao)
+    $default  reduce using rule 43 (operacao)
 
 
-Estado55
+State 55
 
    45 operacao: MOD .
 
-    $default  reduzir usando a regra 45 (operacao)
+    $default  reduce using rule 45 (operacao)
 
 
-Estado56
+State 56
 
    55 operacao: OR .
 
-    $default  reduzir usando a regra 55 (operacao)
+    $default  reduce using rule 55 (operacao)
 
 
-Estado57
+State 57
 
    54 operacao: AND .
 
-    $default  reduzir usando a regra 54 (operacao)
+    $default  reduce using rule 54 (operacao)
 
 
-Estado58
+State 58
 
    56 operacao: NOT .
 
-    $default  reduzir usando a regra 56 (operacao)
+    $default  reduce using rule 56 (operacao)
 
 
-Estado59
+State 59
 
    46 operacao: POTENCIA .
 
-    $default  reduzir usando a regra 46 (operacao)
+    $default  reduce using rule 46 (operacao)
 
 
-Estado60
+State 60
 
    47 operacao: IGUAL .
 
-    $default  reduzir usando a regra 47 (operacao)
+    $default  reduce using rule 47 (operacao)
 
 
-Estado61
+State 61
 
    48 operacao: IGUALIGUAL .
 
-    $default  reduzir usando a regra 48 (operacao)
+    $default  reduce using rule 48 (operacao)
 
 
-Estado62
+State 62
 
    50 operacao: MENOR .
 
-    $default  reduzir usando a regra 50 (operacao)
+    $default  reduce using rule 50 (operacao)
 
 
-Estado63
+State 63
 
    51 operacao: MAIOR .
 
-    $default  reduzir usando a regra 51 (operacao)
+    $default  reduce using rule 51 (operacao)
 
 
-Estado64
+State 64
 
    52 operacao: MENORIGUAL .
 
-    $default  reduzir usando a regra 52 (operacao)
+    $default  reduce using rule 52 (operacao)
 
 
-Estado65
+State 65
 
    53 operacao: MAIORIGUAL .
 
-    $default  reduzir usando a regra 53 (operacao)
+    $default  reduce using rule 53 (operacao)
 
 
-Estado66
+State 66
 
    49 operacao: DIFERENTE .
 
-    $default  reduzir usando a regra 49 (operacao)
+    $default  reduce using rule 49 (operacao)
 
 
-Estado67
+State 67
 
    36 expressao: expressao operacao . expressao
 
-    ID            fazer shift, e ir para o estado 24
-    STR           fazer shift, e ir para o estado 25
-    NUM           fazer shift, e ir para o estado 26
-    FLT           fazer shift, e ir para o estado 27
-    BOOL_LITERAL  fazer shift, e ir para o estado 28
+    ID            shift, and go to state 24
+    STR           shift, and go to state 25
+    NUM           shift, and go to state 26
+    FLT           shift, and go to state 27
+    BOOL_LITERAL  shift, and go to state 28
 
-    func       ir para o estado 29
-    expressao  ir para o estado 78
+    func       go to state 29
+    expressao  go to state 78
 
 
-Estado68
+State 68
 
    10 decl: WHILE expressao DO . CHAVETAE stmlist CHAVETAD
 
-    CHAVETAE  fazer shift, e ir para o estado 79
+    CHAVETAE  shift, and go to state 79
 
 
-Estado69
+State 69
 
    13 decl: INPUT PARE ID . PARD
 
-    PARD  fazer shift, e ir para o estado 80
+    PARD  shift, and go to state 80
 
 
-Estado70
+State 70
 
    14 decl: OUTPUT PARE ID . PARD
 
-    PARD  fazer shift, e ir para o estado 81
+    PARD  shift, and go to state 81
 
 
-Estado71
+State 71
 
     3 stmlist: decl PONTOVIRGULA stmlist .
 
-    $default  reduzir usando a regra 3 (stmlist)
+    $default  reduce using rule 3 (stmlist)
 
 
-Estado72
+State 72
 
     4 decl: idlist DOISPONTOS tipo .
     5     | idlist DOISPONTOS tipo . IGUAL expressao
 
-    IGUAL  fazer shift, e ir para o estado 82
+    IGUAL  shift, and go to state 82
 
-    $default  reduzir usando a regra 4 (decl)
+    $default  reduce using rule 4 (decl)
 
 
-Estado73
+State 73
 
    19 func: ID PARE PARD DOISPONTOS . tipo CHAVETAE stmlist CHAVETAD
 
-    INT     fazer shift, e ir para o estado 44
-    FLOAT   fazer shift, e ir para o estado 45
-    BOOL    fazer shift, e ir para o estado 46
-    VOID    fazer shift, e ir para o estado 47
-    STRING  fazer shift, e ir para o estado 48
+    INT     shift, and go to state 44
+    FLOAT   shift, and go to state 45
+    BOOL    shift, and go to state 46
+    VOID    shift, and go to state 47
+    STRING  shift, and go to state 48
 
-    tipo  ir para o estado 83
+    tipo  go to state 83
 
 
-Estado74
+State 74
 
    31 arglista: idlist DOISPONTOS . tipo
    32         | idlist DOISPONTOS . tipo VIRGULA arglista
 
-    INT     fazer shift, e ir para o estado 44
-    FLOAT   fazer shift, e ir para o estado 45
-    BOOL    fazer shift, e ir para o estado 46
-    VOID    fazer shift, e ir para o estado 47
-    STRING  fazer shift, e ir para o estado 48
+    INT     shift, and go to state 44
+    FLOAT   shift, and go to state 45
+    BOOL    shift, and go to state 46
+    VOID    shift, and go to state 47
+    STRING  shift, and go to state 48
 
-    tipo  ir para o estado 84
+    tipo  go to state 84
 
 
-Estado75
+State 75
 
    18 func: ID PARE arglista PARD . DOISPONTOS tipo CHAVETAE stmlist CHAVETAD
    21     | ID PARE arglista PARD .
 
-    DOISPONTOS  fazer shift, e ir para o estado 85
+    DOISPONTOS  shift, and go to state 85
 
-    $default  reduzir usando a regra 21 (func)
+    $default  reduce using rule 21 (func)
 
 
-Estado76
+State 76
 
    11 decl: PRINT PARE expressao PARD .
 
-    $default  reduzir usando a regra 11 (decl)
+    $default  reduce using rule 11 (decl)
 
 
-Estado77
+State 77
 
     8 decl: IF expressao THEN CHAVETAE . stmlist CHAVETAD
     9     | IF expressao THEN CHAVETAE . stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
 
-    ID      fazer shift, e ir para o estado 1
-    NUM     fazer shift, e ir para o estado 2
-    PRINT   fazer shift, e ir para o estado 3
-    DEF     fazer shift, e ir para o estado 4
-    IF      fazer shift, e ir para o estado 5
-    WHILE   fazer shift, e ir para o estado 6
-    RETURN  fazer shift, e ir para o estado 7
-    BREAK   fazer shift, e ir para o estado 8
-    NEXT    fazer shift, e ir para o estado 9
-    INPUT   fazer shift, e ir para o estado 10
-    OUTPUT  fazer shift, e ir para o estado 11
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    NEXT    shift, and go to state 9
+    INPUT   shift, and go to state 10
+    OUTPUT  shift, and go to state 11
 
-    stmlist  ir para o estado 86
-    decl     ir para o estado 14
-    func     ir para o estado 15
-    idlist   ir para o estado 16
+    stmlist  go to state 86
+    decl     go to state 14
+    func     go to state 15
+    idlist   go to state 16
 
 
-Estado78
+State 78
 
    36 expressao: expressao . operacao expressao
    36          | expressao operacao expressao .
 
-    SOMA           fazer shift, e ir para o estado 51
-    SUBTRACAO      fazer shift, e ir para o estado 52
-    MULTIPLICACAO  fazer shift, e ir para o estado 53
-    DIVISAO        fazer shift, e ir para o estado 54
-    MOD            fazer shift, e ir para o estado 55
-    OR             fazer shift, e ir para o estado 56
-    AND            fazer shift, e ir para o estado 57
-    NOT            fazer shift, e ir para o estado 58
-    POTENCIA       fazer shift, e ir para o estado 59
-    IGUAL          fazer shift, e ir para o estado 60
-    IGUALIGUAL     fazer shift, e ir para o estado 61
-    MENOR          fazer shift, e ir para o estado 62
-    MAIOR          fazer shift, e ir para o estado 63
-    MENORIGUAL     fazer shift, e ir para o estado 64
-    MAIORIGUAL     fazer shift, e ir para o estado 65
-    DIFERENTE      fazer shift, e ir para o estado 66
+    SOMA           shift, and go to state 51
+    SUBTRACAO      shift, and go to state 52
+    MULTIPLICACAO  shift, and go to state 53
+    DIVISAO        shift, and go to state 54
+    MOD            shift, and go to state 55
+    OR             shift, and go to state 56
+    AND            shift, and go to state 57
+    NOT            shift, and go to state 58
+    POTENCIA       shift, and go to state 59
+    IGUAL          shift, and go to state 60
+    IGUALIGUAL     shift, and go to state 61
+    MENOR          shift, and go to state 62
+    MAIOR          shift, and go to state 63
+    MENORIGUAL     shift, and go to state 64
+    MAIORIGUAL     shift, and go to state 65
+    DIFERENTE      shift, and go to state 66
 
-    SOMA           [reduzir usando a regra 36 (expressao)]
-    SUBTRACAO      [reduzir usando a regra 36 (expressao)]
-    MULTIPLICACAO  [reduzir usando a regra 36 (expressao)]
-    DIVISAO        [reduzir usando a regra 36 (expressao)]
-    MOD            [reduzir usando a regra 36 (expressao)]
-    OR             [reduzir usando a regra 36 (expressao)]
-    AND            [reduzir usando a regra 36 (expressao)]
-    NOT            [reduzir usando a regra 36 (expressao)]
-    POTENCIA       [reduzir usando a regra 36 (expressao)]
-    IGUAL          [reduzir usando a regra 36 (expressao)]
-    IGUALIGUAL     [reduzir usando a regra 36 (expressao)]
-    MENOR          [reduzir usando a regra 36 (expressao)]
-    MAIOR          [reduzir usando a regra 36 (expressao)]
-    MENORIGUAL     [reduzir usando a regra 36 (expressao)]
-    MAIORIGUAL     [reduzir usando a regra 36 (expressao)]
-    DIFERENTE      [reduzir usando a regra 36 (expressao)]
-    $default       reduzir usando a regra 36 (expressao)
+    SOMA           [reduce using rule 36 (expressao)]
+    SUBTRACAO      [reduce using rule 36 (expressao)]
+    MULTIPLICACAO  [reduce using rule 36 (expressao)]
+    DIVISAO        [reduce using rule 36 (expressao)]
+    MOD            [reduce using rule 36 (expressao)]
+    OR             [reduce using rule 36 (expressao)]
+    AND            [reduce using rule 36 (expressao)]
+    NOT            [reduce using rule 36 (expressao)]
+    POTENCIA       [reduce using rule 36 (expressao)]
+    IGUAL          [reduce using rule 36 (expressao)]
+    IGUALIGUAL     [reduce using rule 36 (expressao)]
+    MENOR          [reduce using rule 36 (expressao)]
+    MAIOR          [reduce using rule 36 (expressao)]
+    MENORIGUAL     [reduce using rule 36 (expressao)]
+    MAIORIGUAL     [reduce using rule 36 (expressao)]
+    DIFERENTE      [reduce using rule 36 (expressao)]
+    $default       reduce using rule 36 (expressao)
 
-    operacao  ir para o estado 67
+    operacao  go to state 67
 
 
-Estado79
+State 79
 
    10 decl: WHILE expressao DO CHAVETAE . stmlist CHAVETAD
 
-    ID      fazer shift, e ir para o estado 1
-    NUM     fazer shift, e ir para o estado 2
-    PRINT   fazer shift, e ir para o estado 3
-    DEF     fazer shift, e ir para o estado 4
-    IF      fazer shift, e ir para o estado 5
-    WHILE   fazer shift, e ir para o estado 6
-    RETURN  fazer shift, e ir para o estado 7
-    BREAK   fazer shift, e ir para o estado 8
-    NEXT    fazer shift, e ir para o estado 9
-    INPUT   fazer shift, e ir para o estado 10
-    OUTPUT  fazer shift, e ir para o estado 11
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    NEXT    shift, and go to state 9
+    INPUT   shift, and go to state 10
+    OUTPUT  shift, and go to state 11
 
-    stmlist  ir para o estado 87
-    decl     ir para o estado 14
-    func     ir para o estado 15
-    idlist   ir para o estado 16
+    stmlist  go to state 87
+    decl     go to state 14
+    func     go to state 15
+    idlist   go to state 16
 
 
-Estado80
+State 80
 
    13 decl: INPUT PARE ID PARD .
 
-    $default  reduzir usando a regra 13 (decl)
+    $default  reduce using rule 13 (decl)
 
 
-Estado81
+State 81
 
    14 decl: OUTPUT PARE ID PARD .
 
-    $default  reduzir usando a regra 14 (decl)
+    $default  reduce using rule 14 (decl)
 
 
-Estado82
+State 82
 
     5 decl: idlist DOISPONTOS tipo IGUAL . expressao
 
-    ID            fazer shift, e ir para o estado 24
-    STR           fazer shift, e ir para o estado 25
-    NUM           fazer shift, e ir para o estado 26
-    FLT           fazer shift, e ir para o estado 27
-    BOOL_LITERAL  fazer shift, e ir para o estado 28
+    ID            shift, and go to state 24
+    STR           shift, and go to state 25
+    NUM           shift, and go to state 26
+    FLT           shift, and go to state 27
+    BOOL_LITERAL  shift, and go to state 28
 
-    func       ir para o estado 29
-    expressao  ir para o estado 88
+    func       go to state 29
+    expressao  go to state 88
 
 
-Estado83
+State 83
 
    19 func: ID PARE PARD DOISPONTOS tipo . CHAVETAE stmlist CHAVETAD
 
-    CHAVETAE  fazer shift, e ir para o estado 89
+    CHAVETAE  shift, and go to state 89
 
 
-Estado84
+State 84
 
    31 arglista: idlist DOISPONTOS tipo .
    32         | idlist DOISPONTOS tipo . VIRGULA arglista
 
-    VIRGULA  fazer shift, e ir para o estado 90
+    VIRGULA  shift, and go to state 90
 
-    $default  reduzir usando a regra 31 (arglista)
+    $default  reduce using rule 31 (arglista)
 
 
-Estado85
+State 85
 
    18 func: ID PARE arglista PARD DOISPONTOS . tipo CHAVETAE stmlist CHAVETAD
 
-    INT     fazer shift, e ir para o estado 44
-    FLOAT   fazer shift, e ir para o estado 45
-    BOOL    fazer shift, e ir para o estado 46
-    VOID    fazer shift, e ir para o estado 47
-    STRING  fazer shift, e ir para o estado 48
+    INT     shift, and go to state 44
+    FLOAT   shift, and go to state 45
+    BOOL    shift, and go to state 46
+    VOID    shift, and go to state 47
+    STRING  shift, and go to state 48
 
-    tipo  ir para o estado 91
+    tipo  go to state 91
 
 
-Estado86
+State 86
 
     8 decl: IF expressao THEN CHAVETAE stmlist . CHAVETAD
     9     | IF expressao THEN CHAVETAE stmlist . CHAVETAD ELSE CHAVETAE stmlist CHAVETAD
 
-    CHAVETAD  fazer shift, e ir para o estado 92
+    CHAVETAD  shift, and go to state 92
 
 
-Estado87
+State 87
 
    10 decl: WHILE expressao DO CHAVETAE stmlist . CHAVETAD
 
-    CHAVETAD  fazer shift, e ir para o estado 93
+    CHAVETAD  shift, and go to state 93
 
 
-Estado88
+State 88
 
     5 decl: idlist DOISPONTOS tipo IGUAL expressao .
    36 expressao: expressao . operacao expressao
 
-    SOMA           fazer shift, e ir para o estado 51
-    SUBTRACAO      fazer shift, e ir para o estado 52
-    MULTIPLICACAO  fazer shift, e ir para o estado 53
-    DIVISAO        fazer shift, e ir para o estado 54
-    MOD            fazer shift, e ir para o estado 55
-    OR             fazer shift, e ir para o estado 56
-    AND            fazer shift, e ir para o estado 57
-    NOT            fazer shift, e ir para o estado 58
-    POTENCIA       fazer shift, e ir para o estado 59
-    IGUAL          fazer shift, e ir para o estado 60
-    IGUALIGUAL     fazer shift, e ir para o estado 61
-    MENOR          fazer shift, e ir para o estado 62
-    MAIOR          fazer shift, e ir para o estado 63
-    MENORIGUAL     fazer shift, e ir para o estado 64
-    MAIORIGUAL     fazer shift, e ir para o estado 65
-    DIFERENTE      fazer shift, e ir para o estado 66
+    SOMA           shift, and go to state 51
+    SUBTRACAO      shift, and go to state 52
+    MULTIPLICACAO  shift, and go to state 53
+    DIVISAO        shift, and go to state 54
+    MOD            shift, and go to state 55
+    OR             shift, and go to state 56
+    AND            shift, and go to state 57
+    NOT            shift, and go to state 58
+    POTENCIA       shift, and go to state 59
+    IGUAL          shift, and go to state 60
+    IGUALIGUAL     shift, and go to state 61
+    MENOR          shift, and go to state 62
+    MAIOR          shift, and go to state 63
+    MENORIGUAL     shift, and go to state 64
+    MAIORIGUAL     shift, and go to state 65
+    DIFERENTE      shift, and go to state 66
 
-    $default  reduzir usando a regra 5 (decl)
+    $default  reduce using rule 5 (decl)
 
-    operacao  ir para o estado 67
+    operacao  go to state 67
 
 
-Estado89
+State 89
 
    19 func: ID PARE PARD DOISPONTOS tipo CHAVETAE . stmlist CHAVETAD
 
-    ID      fazer shift, e ir para o estado 1
-    NUM     fazer shift, e ir para o estado 2
-    PRINT   fazer shift, e ir para o estado 3
-    DEF     fazer shift, e ir para o estado 4
-    IF      fazer shift, e ir para o estado 5
-    WHILE   fazer shift, e ir para o estado 6
-    RETURN  fazer shift, e ir para o estado 7
-    BREAK   fazer shift, e ir para o estado 8
-    NEXT    fazer shift, e ir para o estado 9
-    INPUT   fazer shift, e ir para o estado 10
-    OUTPUT  fazer shift, e ir para o estado 11
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    NEXT    shift, and go to state 9
+    INPUT   shift, and go to state 10
+    OUTPUT  shift, and go to state 11
 
-    stmlist  ir para o estado 94
-    decl     ir para o estado 14
-    func     ir para o estado 15
-    idlist   ir para o estado 16
+    stmlist  go to state 94
+    decl     go to state 14
+    func     go to state 15
+    idlist   go to state 16
 
 
-Estado90
+State 90
 
    32 arglista: idlist DOISPONTOS tipo VIRGULA . arglista
 
-    ID   fazer shift, e ir para o estado 20
-    NUM  fazer shift, e ir para o estado 2
+    ID   shift, and go to state 20
+    NUM  shift, and go to state 2
 
-    idlist    ir para o estado 40
-    arglista  ir para o estado 95
+    idlist    go to state 40
+    arglista  go to state 95
 
 
-Estado91
+State 91
 
    18 func: ID PARE arglista PARD DOISPONTOS tipo . CHAVETAE stmlist CHAVETAD
 
-    CHAVETAE  fazer shift, e ir para o estado 96
+    CHAVETAE  shift, and go to state 96
 
 
-Estado92
+State 92
 
     8 decl: IF expressao THEN CHAVETAE stmlist CHAVETAD .
     9     | IF expressao THEN CHAVETAE stmlist CHAVETAD . ELSE CHAVETAE stmlist CHAVETAD
 
-    ELSE  fazer shift, e ir para o estado 97
+    ELSE  shift, and go to state 97
 
-    $default  reduzir usando a regra 8 (decl)
+    $default  reduce using rule 8 (decl)
 
 
-Estado93
+State 93
 
    10 decl: WHILE expressao DO CHAVETAE stmlist CHAVETAD .
 
-    $default  reduzir usando a regra 10 (decl)
+    $default  reduce using rule 10 (decl)
 
 
-Estado94
+State 94
 
    19 func: ID PARE PARD DOISPONTOS tipo CHAVETAE stmlist . CHAVETAD
 
-    CHAVETAD  fazer shift, e ir para o estado 98
+    CHAVETAD  shift, and go to state 98
 
 
-Estado95
+State 95
 
    32 arglista: idlist DOISPONTOS tipo VIRGULA arglista .
 
-    $default  reduzir usando a regra 32 (arglista)
+    $default  reduce using rule 32 (arglista)
 
 
-Estado96
+State 96
 
    18 func: ID PARE arglista PARD DOISPONTOS tipo CHAVETAE . stmlist CHAVETAD
 
-    ID      fazer shift, e ir para o estado 1
-    NUM     fazer shift, e ir para o estado 2
-    PRINT   fazer shift, e ir para o estado 3
-    DEF     fazer shift, e ir para o estado 4
-    IF      fazer shift, e ir para o estado 5
-    WHILE   fazer shift, e ir para o estado 6
-    RETURN  fazer shift, e ir para o estado 7
-    BREAK   fazer shift, e ir para o estado 8
-    NEXT    fazer shift, e ir para o estado 9
-    INPUT   fazer shift, e ir para o estado 10
-    OUTPUT  fazer shift, e ir para o estado 11
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    NEXT    shift, and go to state 9
+    INPUT   shift, and go to state 10
+    OUTPUT  shift, and go to state 11
 
-    stmlist  ir para o estado 99
-    decl     ir para o estado 14
-    func     ir para o estado 15
-    idlist   ir para o estado 16
+    stmlist  go to state 99
+    decl     go to state 14
+    func     go to state 15
+    idlist   go to state 16
 
 
-Estado97
+State 97
 
     9 decl: IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE . CHAVETAE stmlist CHAVETAD
 
-    CHAVETAE  fazer shift, e ir para o estado 100
+    CHAVETAE  shift, and go to state 100
 
 
-Estado98
+State 98
 
    19 func: ID PARE PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD .
 
-    $default  reduzir usando a regra 19 (func)
+    $default  reduce using rule 19 (func)
 
 
-Estado99
+State 99
 
    18 func: ID PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist . CHAVETAD
 
-    CHAVETAD  fazer shift, e ir para o estado 101
+    CHAVETAD  shift, and go to state 101
 
 
-Estado100
+State 100
 
     9 decl: IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE . stmlist CHAVETAD
 
-    ID      fazer shift, e ir para o estado 1
-    NUM     fazer shift, e ir para o estado 2
-    PRINT   fazer shift, e ir para o estado 3
-    DEF     fazer shift, e ir para o estado 4
-    IF      fazer shift, e ir para o estado 5
-    WHILE   fazer shift, e ir para o estado 6
-    RETURN  fazer shift, e ir para o estado 7
-    BREAK   fazer shift, e ir para o estado 8
-    NEXT    fazer shift, e ir para o estado 9
-    INPUT   fazer shift, e ir para o estado 10
-    OUTPUT  fazer shift, e ir para o estado 11
+    ID      shift, and go to state 1
+    NUM     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    DEF     shift, and go to state 4
+    IF      shift, and go to state 5
+    WHILE   shift, and go to state 6
+    RETURN  shift, and go to state 7
+    BREAK   shift, and go to state 8
+    NEXT    shift, and go to state 9
+    INPUT   shift, and go to state 10
+    OUTPUT  shift, and go to state 11
 
-    stmlist  ir para o estado 102
-    decl     ir para o estado 14
-    func     ir para o estado 15
-    idlist   ir para o estado 16
+    stmlist  go to state 102
+    decl     go to state 14
+    func     go to state 15
+    idlist   go to state 16
 
 
-Estado101
+State 101
 
    18 func: ID PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD .
 
-    $default  reduzir usando a regra 18 (func)
+    $default  reduce using rule 18 (func)
 
 
-Estado102
+State 102
 
     9 decl: IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist . CHAVETAD
 
-    CHAVETAD  fazer shift, e ir para o estado 103
+    CHAVETAD  shift, and go to state 103
 
 
-Estado103
+State 103
 
     9 decl: IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD .
 
-    $default  reduzir usando a regra 9 (decl)
+    $default  reduce using rule 9 (decl)

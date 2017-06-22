@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <string.h>
+#include "tree.c"
+
 void root(StmList *root);
 void printStmList (StmList *root);
 void printDecl (Decl *root);

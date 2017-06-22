@@ -63,7 +63,7 @@ void printDecl (Decl *root){
 			printf("if ");
 			printExpressao(root->expressao);
 		}if (root->stmList1 != NULL){
-			printf("then ", );
+			printf("then ");
 			printStmList(root->stmList1);
 			printf("\n");
 		}
@@ -73,7 +73,7 @@ void printDecl (Decl *root){
 			printf("if ");			
 			printExpressao(root->expressao);
 		}if (root->stmList1 != NULL){
-			printf("then ", );
+			printf("then ");
 			printStmList(root->stmList1);
 		}if (root->stmList2 != NULL){
 			printf("else ");
@@ -103,7 +103,7 @@ void printDecl (Decl *root){
 
 	}else if (root->type == def_id_type){
 		if (root->tipo != NULL){
-			printTipo(root->tipo)
+			printTipo(root->tipo);
 		}
 	}
 
@@ -112,25 +112,25 @@ void printDecl (Decl *root){
 void printFunc (Func *root){
 	if (root->type == id_arglist_dpontos_tipo_stmList ){
 		if (root->argLista != NULL){
-			printArgLista(root->ArgLista)
+			printArgLista(root->argLista);
 		}if (root->tipo != NULL){
-			printTipo(root->tipo)
+			printTipo(root->tipo);
 		}if (root->stmList != NULL){
-			printStmList(root->stmList)
+			printStmList(root->stmList);
 		}
 
 	}else if (root->type == id_pars_dpontos_tipo_stmList){
 		if (root->tipo != NULL){
-			printTipo(root->tipo)
+			printTipo(root->tipo);
 		}if (root->stmList != NULL){
-			printStmList(root->stmList)
+			printStmList(root->stmList);
 		}
 
 	}else if (root->type == id_pars){
 
 	}else if (root->type == id_arglist){
 		if (root->argLista != NULL){
-			printArgLista(root->ArgLista)
+			printArgLista(root->argLista);
 	}
 }
 
@@ -165,7 +165,7 @@ void printTipo (Tipo *root){
 	}
 }
 void printArgLista(ArgLista *root){
-	if (root->type == idlist_dpontos_tipo ){
+	if (root->type == idlist_dpontos_tipo_argL){
 		if (root->idList != NULL){
 			printIdList(root->idList);
 		}
@@ -174,7 +174,7 @@ void printArgLista(ArgLista *root){
 		if (root->idList != NULL){
 			printIdList(root->idList);
 		}if (root->argLista != NULL){
-			printArgLista(root->ArgLista)
+			printArgLista(root->argLista);
 	}
 
 	}else if (root->type == idlist_){
@@ -185,29 +185,31 @@ void printArgLista(ArgLista *root){
 	}
 }
 void printExpressao (Expressao *root){
-	if (root->type == idlist_dpontos_tipo ){
+	/*
+	if (root->type == id_exp){
 		if (root->idList != NULL){
 			printIdList(root->idList);
 		}
+	*/	
 
-	}else if (root->type == id_){
-
+	if (root->type == id_exp){
+		printExpressao(root->id);		
 	}else if (root->type == str_){
 
 	}else if (root->type == exp_op_exp){
 		if (root->expressao1 != NULL){
-			printExpressao(root->expressao1)
+			printExpressao(root->expressao1);
 		}if (root->operacao != NULL){
-			printExpressao(root->operacao)
+			printExpressao(root->operacao);
 		}if (root->expressao2 != NULL){
-			printExpressao(root->expressao2)
+			printExpressao(root->expressao2);
 		}
 
 	}else if (root->type == bool_lit){
 
 	}else if (root->type == flt_){
 
-	}else if (root->type == num_){
+	}else if (root->type == num_exp){
 
 	}else if (root->type == func_){
 

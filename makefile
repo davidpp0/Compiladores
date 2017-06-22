@@ -1,4 +1,4 @@
-CC = gcc-6 -Wall
+CC = gcc -Wall
 YACC = bison -d -v
 LEX = flex
 

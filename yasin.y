@@ -110,17 +110,17 @@ tipo: INT                 				{$$ = newTipo(int_);};
 	| VOID 								{$$ = newTipo(void_);};
 	;
 
-arglista: idlist DOISPONTOS tipo                      {$$ = newArgLista(idlist_dpontos_tipo,$1,$3,NULL);};
+arglista: idlist DOISPONTOS tipo                      {$$ = newArgLista(idlist_dpontos_tipo_argL,$1,$3,NULL);};
   	    | idlist DOISPONTOS tipo VIRGULA arglista 	  {$$ = newArgLista(idlist_dponstos_tipo_virg_args,$1,$3,$5);};	
   	    | idlist 									  {$$ = newArgLista(idlist_,$1,NULL,NULL);};
 		;
 
-expressao: ID  									{$$ = newExpressao(id_,$1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);};
+expressao: ID  									{$$ = newExpressao(id_exp,$1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);};
 	 	 | STR 									{$$ = newExpressao(str_,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,$1);};
 		 | expressao operacao expressao 		{$$ = newExpressao(exp_op_exp,NULL,$1,$3,$2,NULL,NULL,NULL,NULL,NULL);};	
 		 | BOOL_LITERAL 						{$$ = newExpressao(bool_lit,NULL,NULL,NULL,NULL,NULL,NULL,NULL,$1,NULL);};
 		 | FLT 									{$$ = newExpressao(flt_,$1,NULL,NULL,NULL,NULL,NULL,$1,NULL,NULL);};
-		 | NUM 									{$$ = newExpressao(num_,$1,NULL,NULL,NULL,$1,NULL,NULL,NULL,NULL);};
+		 | NUM 									{$$ = newExpressao(num_exp,$1,NULL,NULL,NULL,$1,NULL,NULL,NULL,NULL);};
 		 | func 								{$$ = newExpressao(func_,$1,NULL,NULL,NULL,NULL,$1,NULL,NULL,NULL);};
 		 ;
 operacao: SOMA 									{$$ = newOperacao(soma_);};

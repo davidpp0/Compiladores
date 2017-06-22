@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.2.  */
+/* A Bison parser, made by GNU Bison 3.0.4.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.2"
+#define YYBISON_VERSION "3.0.4"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -161,7 +161,7 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE YYSTYPE;
+
 union YYSTYPE
 {
 #line 14 "yasin.y" /* yacc.c:355  */
@@ -186,6 +186,8 @@ union YYSTYPE
 
 #line 188 "yasin.tab.c" /* yacc.c:355  */
 };
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -199,7 +201,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 203 "yasin.tab.c" /* yacc.c:358  */
+#line 205 "yasin.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1358,341 +1360,341 @@ yyreduce:
         case 2:
 #line 72 "yasin.y" /* yacc.c:1646  */
     {root((yyvsp[0].stmlist));}
-#line 1362 "yasin.tab.c" /* yacc.c:1646  */
+#line 1364 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
 #line 75 "yasin.y" /* yacc.c:1646  */
     {(yyval.stmlist) = newStmList(decl_pontovirg,(yyvsp[-1].decl),NULL);}
-#line 1368 "yasin.tab.c" /* yacc.c:1646  */
+#line 1370 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
 #line 76 "yasin.y" /* yacc.c:1646  */
     {(yyval.stmlist) = newStmList(decl_pontovirg_stmList,(yyvsp[-2].decl),(yyvsp[0].stmlist));}
-#line 1374 "yasin.tab.c" /* yacc.c:1646  */
+#line 1376 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
 #line 78 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(idlist_dpontos_tipo,(yyvsp[-2].idlist),(yyvsp[0].tipo),NULL,NULL,NULL,NULL,NULL);}
-#line 1380 "yasin.tab.c" /* yacc.c:1646  */
+#line 1382 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
 #line 79 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(idlist_dpontos_tipo_igual_exp,(yyvsp[-4].idlist),(yyvsp[-2].tipo),(yyvsp[0].expressao),NULL,NULL,NULL,NULL);}
-#line 1386 "yasin.tab.c" /* yacc.c:1646  */
+#line 1388 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 80 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(id_igual_exp,NULL,NULL,(yyvsp[0].expressao),NULL,NULL,NULL,(yyvsp[-2].id));}
-#line 1392 "yasin.tab.c" /* yacc.c:1646  */
+#line 1394 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
 #line 81 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(funcao,NULL,NULL,NULL,NULL,NULL,(yyvsp[0].func),NULL);}
-#line 1398 "yasin.tab.c" /* yacc.c:1646  */
+#line 1400 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
 #line 82 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(if_exp_then_stmList,NULL,NULL,NULL,(yyvsp[-4].expressao),(yyvsp[-1].stmlist),NULL,NULL);}
-#line 1404 "yasin.tab.c" /* yacc.c:1646  */
+#line 1406 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
 #line 83 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(if_exp_then_stmList_else_stmList,NULL,NULL,NULL,(yyvsp[-8].expressao),(yyvsp[-5].stmlist),(yyvsp[-1].stmlist),NULL);}
-#line 1410 "yasin.tab.c" /* yacc.c:1646  */
+#line 1412 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
 #line 84 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(while_exp_do_stmList,NULL,NULL,(yyvsp[-4].expressao),(yyvsp[-1].stmlist),NULL,NULL,NULL);}
-#line 1416 "yasin.tab.c" /* yacc.c:1646  */
+#line 1418 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 85 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(print_,NULL,NULL,(yyvsp[-1].expressao),NULL,NULL,NULL,NULL);}
-#line 1422 "yasin.tab.c" /* yacc.c:1646  */
+#line 1424 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
 #line 86 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(return_,NULL,NULL,(yyvsp[0].expressao),NULL,NULL,NULL,NULL);}
-#line 1428 "yasin.tab.c" /* yacc.c:1646  */
+#line 1430 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
 #line 87 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(input_id,NULL,NULL,NULL,NULL,NULL,NULL,(yyvsp[-1].id));}
-#line 1434 "yasin.tab.c" /* yacc.c:1646  */
+#line 1436 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
 #line 88 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(output_id,NULL,NULL,NULL,NULL,NULL,NULL,(yyvsp[-1].id));}
-#line 1440 "yasin.tab.c" /* yacc.c:1646  */
+#line 1442 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
 #line 89 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(break_,NULL,NULL,NULL,NULL,NULL,NULL,NULL);}
-#line 1446 "yasin.tab.c" /* yacc.c:1646  */
+#line 1448 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
 #line 90 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(next_,NULL,NULL,NULL,NULL,NULL,NULL,NULL);}
-#line 1452 "yasin.tab.c" /* yacc.c:1646  */
+#line 1454 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
 #line 91 "yasin.y" /* yacc.c:1646  */
     {(yyval.decl) = newDecl(def_id_type,NULL,(yyvsp[0].tipo),NULL,NULL,NULL,NULL,(yyvsp[-1].id));}
-#line 1458 "yasin.tab.c" /* yacc.c:1646  */
+#line 1460 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
 #line 94 "yasin.y" /* yacc.c:1646  */
     {(yyval.func) = newFunc(id_arglist_dpontos_tipo_stmList,(yyvsp[-8].id),(yyvsp[-3].tipo),(yyvsp[-6].arglista),(yyvsp[-1].stmlist));}
-#line 1464 "yasin.tab.c" /* yacc.c:1646  */
+#line 1466 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
 #line 95 "yasin.y" /* yacc.c:1646  */
     {(yyval.func) = newFunc(id_pars_dpontos_tipo_stmList,(yyvsp[-7].id),(yyvsp[-3].tipo),NULL,(yyvsp[-1].stmlist));}
-#line 1470 "yasin.tab.c" /* yacc.c:1646  */
+#line 1472 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
 #line 96 "yasin.y" /* yacc.c:1646  */
     {(yyval.func) = newFunc(id_pars,(yyvsp[-2].id),NULL,NULL,NULL);}
-#line 1476 "yasin.tab.c" /* yacc.c:1646  */
+#line 1478 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
 #line 97 "yasin.y" /* yacc.c:1646  */
     {(yyval.func) = newFunc(id_arglist,(yyvsp[-3].id),NULL,(yyvsp[-1].arglista),NULL);}
-#line 1482 "yasin.tab.c" /* yacc.c:1646  */
+#line 1484 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
 #line 100 "yasin.y" /* yacc.c:1646  */
     {(yyval.idlist) = newIdList(id_,(yyvsp[0].id),NULL,NULL);}
-#line 1488 "yasin.tab.c" /* yacc.c:1646  */
+#line 1490 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
 #line 101 "yasin.y" /* yacc.c:1646  */
     {(yyval.idlist) = newIdList(id_virg_idlist,(yyvsp[-2].id),NULL,(yyvsp[0].idlist));}
-#line 1494 "yasin.tab.c" /* yacc.c:1646  */
+#line 1496 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
 #line 102 "yasin.y" /* yacc.c:1646  */
     {(yyval.idlist) = newIdList(num_,NULL,(yyvsp[0].val),NULL);}
-#line 1500 "yasin.tab.c" /* yacc.c:1646  */
+#line 1502 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
 #line 103 "yasin.y" /* yacc.c:1646  */
     {(yyval.idlist) = newIdList(num_idlist,NULL,(yyvsp[-1].val),(yyvsp[0].idlist));}
-#line 1506 "yasin.tab.c" /* yacc.c:1646  */
+#line 1508 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
 #line 106 "yasin.y" /* yacc.c:1646  */
     {(yyval.tipo) = newTipo(int_);}
-#line 1512 "yasin.tab.c" /* yacc.c:1646  */
+#line 1514 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
 #line 107 "yasin.y" /* yacc.c:1646  */
     {(yyval.tipo) = newTipo(float_);}
-#line 1518 "yasin.tab.c" /* yacc.c:1646  */
+#line 1520 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
 #line 108 "yasin.y" /* yacc.c:1646  */
     {(yyval.tipo) = newTipo(string_);}
-#line 1524 "yasin.tab.c" /* yacc.c:1646  */
+#line 1526 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
 #line 109 "yasin.y" /* yacc.c:1646  */
     {(yyval.tipo) = newTipo(bool_);}
-#line 1530 "yasin.tab.c" /* yacc.c:1646  */
+#line 1532 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
 #line 110 "yasin.y" /* yacc.c:1646  */
     {(yyval.tipo) = newTipo(void_);}
-#line 1536 "yasin.tab.c" /* yacc.c:1646  */
+#line 1538 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
 #line 113 "yasin.y" /* yacc.c:1646  */
-    {(yyval.arglista) = newArgLista(idlist_dpontos_tipo,(yyvsp[-2].idlist),(yyvsp[0].tipo),NULL);}
-#line 1542 "yasin.tab.c" /* yacc.c:1646  */
+    {(yyval.arglista) = newArgLista(idlist_dpontos_tipo_argL,(yyvsp[-2].idlist),(yyvsp[0].tipo),NULL);}
+#line 1544 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
 #line 114 "yasin.y" /* yacc.c:1646  */
     {(yyval.arglista) = newArgLista(idlist_dponstos_tipo_virg_args,(yyvsp[-4].idlist),(yyvsp[-2].tipo),(yyvsp[0].arglista));}
-#line 1548 "yasin.tab.c" /* yacc.c:1646  */
+#line 1550 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
 #line 115 "yasin.y" /* yacc.c:1646  */
     {(yyval.arglista) = newArgLista(idlist_,(yyvsp[0].idlist),NULL,NULL);}
-#line 1554 "yasin.tab.c" /* yacc.c:1646  */
+#line 1556 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
 #line 118 "yasin.y" /* yacc.c:1646  */
-    {(yyval.expressao) = newExpressao(id_,(yyvsp[0].id),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);}
-#line 1560 "yasin.tab.c" /* yacc.c:1646  */
+    {(yyval.expressao) = newExpressao(id_exp,(yyvsp[0].id),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);}
+#line 1562 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
 #line 119 "yasin.y" /* yacc.c:1646  */
     {(yyval.expressao) = newExpressao(str_,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(yyvsp[0].str));}
-#line 1566 "yasin.tab.c" /* yacc.c:1646  */
+#line 1568 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
 #line 120 "yasin.y" /* yacc.c:1646  */
     {(yyval.expressao) = newExpressao(exp_op_exp,NULL,(yyvsp[-2].expressao),(yyvsp[0].expressao),(yyvsp[-1].operacao),NULL,NULL,NULL,NULL,NULL);}
-#line 1572 "yasin.tab.c" /* yacc.c:1646  */
+#line 1574 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
 #line 121 "yasin.y" /* yacc.c:1646  */
     {(yyval.expressao) = newExpressao(bool_lit,NULL,NULL,NULL,NULL,NULL,NULL,NULL,(yyvsp[0].bool),NULL);}
-#line 1578 "yasin.tab.c" /* yacc.c:1646  */
+#line 1580 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
 #line 122 "yasin.y" /* yacc.c:1646  */
     {(yyval.expressao) = newExpressao(flt_,(yyvsp[0].flt),NULL,NULL,NULL,NULL,NULL,(yyvsp[0].flt),NULL,NULL);}
-#line 1584 "yasin.tab.c" /* yacc.c:1646  */
+#line 1586 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
 #line 123 "yasin.y" /* yacc.c:1646  */
-    {(yyval.expressao) = newExpressao(num_,(yyvsp[0].val),NULL,NULL,NULL,(yyvsp[0].val),NULL,NULL,NULL,NULL);}
-#line 1590 "yasin.tab.c" /* yacc.c:1646  */
+    {(yyval.expressao) = newExpressao(num_exp,(yyvsp[0].val),NULL,NULL,NULL,(yyvsp[0].val),NULL,NULL,NULL,NULL);}
+#line 1592 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
 #line 124 "yasin.y" /* yacc.c:1646  */
     {(yyval.expressao) = newExpressao(func_,(yyvsp[0].func),NULL,NULL,NULL,NULL,(yyvsp[0].func),NULL,NULL,NULL);}
-#line 1596 "yasin.tab.c" /* yacc.c:1646  */
+#line 1598 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
 #line 126 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(soma_);}
-#line 1602 "yasin.tab.c" /* yacc.c:1646  */
+#line 1604 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
 #line 127 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(subtracao_);}
-#line 1608 "yasin.tab.c" /* yacc.c:1646  */
+#line 1610 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
 #line 128 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(divisao_);}
-#line 1614 "yasin.tab.c" /* yacc.c:1646  */
+#line 1616 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
 #line 129 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(multiplicacao_);}
-#line 1620 "yasin.tab.c" /* yacc.c:1646  */
+#line 1622 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
 #line 130 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(mod_);}
-#line 1626 "yasin.tab.c" /* yacc.c:1646  */
+#line 1628 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
 #line 131 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(potencia_);}
-#line 1632 "yasin.tab.c" /* yacc.c:1646  */
+#line 1634 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
 #line 132 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(igual_);}
-#line 1638 "yasin.tab.c" /* yacc.c:1646  */
+#line 1640 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
 #line 133 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(igual_igual);}
-#line 1644 "yasin.tab.c" /* yacc.c:1646  */
+#line 1646 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 50:
 #line 134 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(diferente_);}
-#line 1650 "yasin.tab.c" /* yacc.c:1646  */
+#line 1652 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 51:
 #line 135 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(menor_);}
-#line 1656 "yasin.tab.c" /* yacc.c:1646  */
+#line 1658 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 52:
 #line 136 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(maior_);}
-#line 1662 "yasin.tab.c" /* yacc.c:1646  */
+#line 1664 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 53:
 #line 137 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(menorIgual_);}
-#line 1668 "yasin.tab.c" /* yacc.c:1646  */
+#line 1670 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
 #line 138 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(maiorIgual_);}
-#line 1674 "yasin.tab.c" /* yacc.c:1646  */
+#line 1676 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
 #line 139 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(and_);}
-#line 1680 "yasin.tab.c" /* yacc.c:1646  */
+#line 1682 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
 #line 140 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(or_);}
-#line 1686 "yasin.tab.c" /* yacc.c:1646  */
+#line 1688 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
 #line 141 "yasin.y" /* yacc.c:1646  */
     {(yyval.operacao) = newOperacao(not_);}
-#line 1692 "yasin.tab.c" /* yacc.c:1646  */
+#line 1694 "yasin.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1696 "yasin.tab.c" /* yacc.c:1646  */
+#line 1698 "yasin.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
