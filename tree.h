@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
+//#include <stdbool.h>
 
 typedef enum stmType{
 	decl_pontovirg,
@@ -151,7 +151,7 @@ struct Expressao
 	int num;
 	Func *func;
 	float flt;
-	bool booleano;
+	int booleano;
 	char *str;
 
 };
@@ -167,5 +167,5 @@ Func *newFunc( funcType type, char *id, Tipo *tipo, ArgLista *argLista, StmList 
 IdList *newIdList(idlistType type, char *id, int num, IdList *idList);
 Tipo *newTipo(tipoType type);
 ArgLista *newArgLista(argListaType type, IdList *idList, Tipo *tipo, ArgLista *argLista);
-Expressao *newExpressao(expressaoType type, char *id, Expressao *expressao1, Expressao *expressao2, Operacao *operacao, int num, Func *func, double flt, bool booleano, char *str);
+Expressao *newExpressao(expressaoType type, char *id, Expressao *expressao1, Expressao *expressao2, Operacao *operacao, int num, Func *func, double flt, int booleano, char *str);
 Operacao *newOperacao(operacaoType type);

@@ -4,7 +4,7 @@ LEX = flex
 
 
 ya : yasin.tab.c lex.yy.c
-	$(CC) $^ -o $@ -lfl
+	$(CC) $^ compiler.c tree.c -o $@ -lfl
 
 yasin.tab.c : yasin.y
 	$(YACC) $^

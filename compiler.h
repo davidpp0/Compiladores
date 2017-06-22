@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "tree.c"
+#include "tree.h"
 
 void root(StmList *root);
 void printStmList (StmList *root);

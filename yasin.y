@@ -3,7 +3,9 @@
 	#include <math.h>
 	#include <string.h>
 	#include <stdlib.h>
-	#include "compiler.c"
+//	#include <stdbool.h>
+
+	#include "compiler.h"
 
 	int yylex(void);				
 	void yyerror(const char *);		
@@ -17,13 +19,13 @@
     char *str;
     char *id;
     int boolean;
-    struct StmList *stmList;
-    struct StmList *stmList1;
-    struct StmList *stmList2;
+    struct StmList *stmlist;
+    struct StmList *stmlist1;
+    struct StmList *stmlist2;
     struct Decl *decl;
     struct Func *func;
-    struct IdList *idList;
-    struct ArgLista *argLista;
+    struct IdList *idlist;
+    struct ArgLista *arglista;
     struct Tipo *tipo;
     struct Operacao *operacao;
     struct Expressao *expressao;
@@ -36,7 +38,7 @@
 %token <str> STR
 %token <val> NUM
 %token <flt> FLT
-%token <bool> BOOL_LITERAL
+%token <boolean> BOOL_LITERAL
 %token PRINT
 %token PONTO VIRGULA DOISPONTOS
 %token DEF IF THEN ELSE WHILE DO RETURN BREAK NEXT
@@ -79,8 +81,8 @@ decl: idlist DOISPONTOS tipo 						   {$$ = newDecl(idlist_dpontos_tipo,$1,$3,NU
 	| idlist DOISPONTOS tipo IGUAL expressao   	       {$$ = newDecl(idlist_dpontos_tipo_igual_exp,$1,$3,$5,NULL,NULL,NULL,NULL);};
 	| ID IGUAL expressao							   {$$ = newDecl(id_igual_exp,NULL,NULL,$3,NULL,NULL,NULL,$1);};
 	| func											   {$$ = newDecl(funcao,NULL,NULL,NULL,NULL,NULL,$1,NULL);};
-	| IF expressao THEN CHAVETAE stmlist CHAVETAD      {$$ = newDecl(if_exp_then_stmList,NULL,NULL,NULL,$2,$5,NULL,NULL);};    
-	| IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD      {$$ = newDecl(if_exp_then_stmList_else_stmList,NULL,NULL,NULL,$2,$5,$9,NULL);};
+	| IF expressao THEN CHAVETAE stmlist CHAVETAD      {$$ = newDecl(if_exp_then_stmList,NULL,NULL,$2,$5,NULL,NULL,NULL);};    
+	| IF expressao THEN CHAVETAE stmlist CHAVETAD ELSE CHAVETAE stmlist CHAVETAD      {$$ = newDecl(if_exp_then_stmList_else_stmList,NULL,NULL,$2,$5,$9,NULL,NULL);};
 	| WHILE expressao DO CHAVETAE stmlist CHAVETAD     {$$ = newDecl(while_exp_do_stmList,NULL,NULL,$2,$5,NULL,NULL,NULL);};
 	| PRINT PARE expressao PARD                        {$$ = newDecl(print_,NULL,NULL,$3,NULL,NULL,NULL,NULL);};
 	| RETURN expressao                                 {$$ = newDecl(return_,NULL,NULL,$2,NULL,NULL,NULL,NULL);};
@@ -97,8 +99,8 @@ func: ID PARE arglista PARD DOISPONTOS tipo CHAVETAE stmlist CHAVETAD   {$$ = ne
 	| ID PARE arglista PARD 											{$$ = newFunc(id_arglist,$1,NULL,$3,NULL);};
 
 
-idlist: ID 								{$$ = newIdList(id_,$1,NULL,NULL);};
-	  | ID VIRGULA idlist 				{$$ = newIdList(id_virg_idlist,$1,NULL,$3);};
+idlist: ID 								{$$ = newIdList(id_,$1,0,NULL);};
+	  | ID VIRGULA idlist 				{$$ = newIdList(id_virg_idlist,$1,0,$3);};
 	  | NUM 							{$$ = newIdList(num_,NULL,$1,NULL);};
 	  | NUM idlist 						{$$ = newIdList(num_idlist,NULL,$1,$2);};
 	  ;
@@ -115,13 +117,13 @@ arglista: idlist DOISPONTOS tipo                      {$$ = newArgLista(idlist_d
   	    | idlist 									  {$$ = newArgLista(idlist_,$1,NULL,NULL);};
 		;
 
-expressao: ID  									{$$ = newExpressao(id_exp,$1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);};
-	 	 | STR 									{$$ = newExpressao(str_,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,$1);};
-		 | expressao operacao expressao 		{$$ = newExpressao(exp_op_exp,NULL,$1,$3,$2,NULL,NULL,NULL,NULL,NULL);};	
-		 | BOOL_LITERAL 						{$$ = newExpressao(bool_lit,NULL,NULL,NULL,NULL,NULL,NULL,NULL,$1,NULL);};
-		 | FLT 									{$$ = newExpressao(flt_,$1,NULL,NULL,NULL,NULL,NULL,$1,NULL,NULL);};
-		 | NUM 									{$$ = newExpressao(num_exp,$1,NULL,NULL,NULL,$1,NULL,NULL,NULL,NULL);};
-		 | func 								{$$ = newExpressao(func_,$1,NULL,NULL,NULL,NULL,$1,NULL,NULL,NULL);};
+expressao: ID  									{$$ = newExpressao(id_exp,$1,NULL,NULL,NULL,0,NULL,0.0,0,NULL);};
+	 	 | STR 									{$$ = newExpressao(str_,NULL,NULL,NULL,NULL,0,NULL,0.0,0,$1);};
+		 | expressao operacao expressao 		{$$ = newExpressao(exp_op_exp,NULL,$1,$3,$2,0,NULL,0.0,0,NULL);};	
+		 | BOOL_LITERAL 						{$$ = newExpressao(bool_lit,NULL,NULL,NULL,NULL,0,NULL,0.0,$1,NULL);};
+		 | FLT 									{$$ = newExpressao(flt_,NULL,NULL,NULL,NULL,0,NULL,$1,0,NULL);};
+		 | NUM 									{$$ = newExpressao(num_exp,NULL,NULL,NULL,NULL,$1,NULL,0.0,0,NULL);};
+		 | func 								{$$ = newExpressao(func_,NULL,NULL,NULL,NULL,0,$1,0.0,0,NULL);};
 		 ;
 operacao: SOMA 									{$$ = newOperacao(soma_);};
 		| SUBTRACAO 							{$$ = newOperacao(subtracao_);};

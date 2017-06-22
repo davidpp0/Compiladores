@@ -101,20 +101,20 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 14 "yasin.y" /* yacc.c:1909  */
+#line 16 "yasin.y" /* yacc.c:1909  */
 
 	int val;
     double flt;
     char *str;
     char *id;
     int boolean;
-    struct StmList *stmList;
-    struct StmList *stmList1;
-    struct StmList *stmList2;
+    struct StmList *stmlist;
+    struct StmList *stmlist1;
+    struct StmList *stmlist2;
     struct Decl *decl;
     struct Func *func;
-    struct IdList *idList;
-    struct ArgLista *argLista;
+    struct IdList *idlist;
+    struct ArgLista *arglista;
     struct Tipo *tipo;
     struct Operacao *operacao;
     struct Expressao *expressao;

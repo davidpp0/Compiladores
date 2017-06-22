@@ -1,4 +1,4 @@
-#include <stdbool.h>
+//#include <stdbool.h>
 #include "tree.h"
 
 
@@ -59,7 +59,7 @@ ArgLista *newArgLista(argListaType type, IdList *idList, Tipo *tipo, ArgLista *a
 	return s;
 }
 
-Expressao *newExpressao(expressaoType type, char *id, Expressao *expressao1, Expressao *expressao2, Operacao *operacao, int num, Func *func, double flt, bool booleano, char *str){
+Expressao *newExpressao(expressaoType type, char *id, Expressao *expressao1, Expressao *expressao2, Operacao *operacao, int num, Func *func, double flt, int booleano, char *str){
 	Expressao *s = malloc(sizeof(Expressao));
 	s->type = type;
 	s->id = id;
@@ -69,7 +69,7 @@ Expressao *newExpressao(expressaoType type, char *id, Expressao *expressao1, Exp
 	s->num = num;
 	s->func = func;
 	s->flt = flt;
-	s->booleano = boolean;
+	s->booleano = booleano;
 	s->str = str;
 	return s;
 }

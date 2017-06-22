@@ -131,10 +131,11 @@ void printFunc (Func *root){
 	}else if (root->type == id_arglist){
 		if (root->argLista != NULL){
 			printArgLista(root->argLista);
+		}
 	}
 }
 
-void printIdList (IdList *root){
+void printIdList(IdList *root){
 	if (root->type == id_ ){
 
 	}else if (root->type == id_virg_idlist){
@@ -193,14 +194,14 @@ void printExpressao (Expressao *root){
 	*/	
 
 	if (root->type == id_exp){
-		printExpressao(root->id);		
+		printf("%s\n",root->id);		
 	}else if (root->type == str_){
 
 	}else if (root->type == exp_op_exp){
 		if (root->expressao1 != NULL){
 			printExpressao(root->expressao1);
 		}if (root->operacao != NULL){
-			printExpressao(root->operacao);
+			printOperacao(root->operacao);
 		}if (root->expressao2 != NULL){
 			printExpressao(root->expressao2);
 		}
