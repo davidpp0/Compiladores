@@ -15,9 +15,11 @@ void printStmList (StmList *root){
 	}else if (root->type == decl_pontovirg_stmList){
 		if (root->decl != NULL){
 			printDecl(root->decl);
+			printf(";\n");
+
 		}
 		if (root->stmList != NULL){
-			printf("; ");
+			
 			printStmList(root->stmList);
 			printf("\n");
 		}
@@ -33,7 +35,7 @@ void printDecl (Decl *root){
 		if (root->tipo != NULL){
 			printf(": ");
 			printTipo(root->tipo);
-			printf("\n");
+			
 		}
 
 	}else if (root->type == idlist_dpontos_tipo_igual_exp){
@@ -45,14 +47,13 @@ void printDecl (Decl *root){
 		}if (root->expressao != NULL){
 			printf("= ");
 			printExpressao(root->expressao);
-			printf("\n");
 		}
 
 	}else if (root->type == id_igual_exp){
 		if (root->expressao != NULL){
 			printf("%s = ",root->id);
 			printExpressao(root->expressao);
-			printf("\n");
+		
 		}
 
 	}else if (root->type == funcao){
@@ -65,9 +66,9 @@ void printDecl (Decl *root){
 			printf("if ");
 			printExpressao(root->expressao);
 		}if (root->stmList1 != NULL){
-			printf("then ");
+			printf("then {\n");
 			printStmList(root->stmList1);
-			printf("\n");
+			printf("}");
 		}
 
 	}else if (root->type == if_exp_then_stmList_else_stmList){
@@ -75,48 +76,51 @@ void printDecl (Decl *root){
 			printf("if ");			
 			printExpressao(root->expressao);
 		}if (root->stmList1 != NULL){
-			printf("then ");
+			printf("then {\n");
 			printStmList(root->stmList1);
+			printf("}\n");
 		}if (root->stmList2 != NULL){
-			printf("else ");
+			printf("else {\n");
 			printStmList(root->stmList2);
-			printf("\n");
+			printf("}");
 		}
 
 	}else if (root->type == while_exp_do_stmList){
 		if (root->expressao != NULL){
+			printf("while ");
 			printExpressao(root->expressao);
+			printf(" do {\n");
 		}if (root->stmList1 != NULL){
 			printStmList(root->stmList1);
+			printf("}");
 		}
 
 	}else if (root->type == print_){
 		if(root->expressao!=NULL){
+			printf("print (");
 			printExpressao(root->expressao);
+			printf(")");
 		}
 
 	}else if (root->type == return_){
 		if(root->expressao!=NULL){
 			printf("return ");
 			printExpressao(root->expressao);
-			printf("\n");
+			
 		}
 	}else if (root->type == input_id){
 		printf("input (");
 		printf("%s", root->id);
 		printf(")");
-		printf("\n");
 	}else if (root->type == output_id){
 		printf("output (");
 		printf("%s", root->id);
 		printf(")");
-		printf("\n");
 	}else if (root->type == break_){
 		printf("break ");
-		printf("\n");
 	}else if (root->type == next_){
 		printf("next ");
-		printf("\n");
+		
 	}else if (root->type == def_id_type){
 		if (root->tipo != NULL){
 			printTipo(root->tipo);
@@ -127,18 +131,28 @@ void printDecl (Decl *root){
 void printFunc (Func *root){
 	if (root->type == id_arglist_dpontos_tipo_stmList ){
 		if (root->argLista != NULL){
+			printf("%s",root->id );
+			printf("(");
 			printArgLista(root->argLista);
+			printf(")");
 		}if (root->tipo != NULL){
+			printf(" : ");
 			printTipo(root->tipo);
+			printf("{\n" );
 		}if (root->stmList != NULL){
 			printStmList(root->stmList);
+			printf("}");
 		}
 
 	}else if (root->type == id_pars_dpontos_tipo_stmList){
 		if (root->tipo != NULL){
+			printf("%s",root->id);
+			printf("() : ");
 			printTipo(root->tipo);
+			printf("{\n" );
 		}if (root->stmList != NULL){
 			printStmList(root->stmList);
+			printf("}");
 		}
 
 	}else if (root->type == id_pars){
@@ -154,19 +168,19 @@ void printFunc (Func *root){
 
 void printIdList(IdList *root){
 	if (root->type == id_){
-		printf("%s ", root->id);
+		printf("%s", root->id);
 
 	}else if (root->type == id_virg_idlist){
-		printf("%s, ",root->id);
+		printf("%s,",root->id);
 		if (root->idList != NULL){
 			printIdList(root->idList);						
 		}
 
 	}else if (root->type == num_){
-		printf("%d ",root->num );
+		printf("%d",root->num );
 
 	}else if (root->type == num_idlist){
-		printf("%d ", root->num);
+		printf("%d", root->num);
 		if (root->idList != NULL){
 			printIdList(root->idList);
 		}
@@ -192,25 +206,25 @@ void printArgLista(ArgLista *root){
 	if (root->type == idlist_dpontos_tipo_argL){
 		if (root->idList != NULL){
 			printIdList(root->idList);
-			printf(": ");
+			printf(" : ");
 			printTipo(root->tipo);
-			printf("\n");
+			
 		}
 
 	}else if (root->type == idlist_dponstos_tipo_virg_args){
 		if (root->idList != NULL){
 			printIdList(root->idList);
-			printf(": ");
+			printf(" : ");
 			printTipo(root->tipo);
 			printf(", ");
 			printArgLista(root->argLista);
-			printf("\n");
+			
 		}
 
 	}else if (root->type == idlist_){
 		if (root->idList != NULL){
 			printIdList(root->idList);
-			printf("\n");
+			
 		}
 
 	}
