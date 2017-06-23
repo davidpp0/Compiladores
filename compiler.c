@@ -1,8 +1,16 @@
 #include "compiler.h"
 #include <string.h>
 
+FILE *w_file;
+
 void root(StmList *root){
 	printStmList(root);
+	w_file = fopen("yac.out", "w");
+	if (w_file == NULL)
+	{
+    printf("Error opening file!\n");
+    exit(1);
+	}
 }
 
 void printStmList (StmList *root){
@@ -291,6 +299,7 @@ void printOperacao (Operacao *root){
 	}
 }
 
+
 /////////////////////////////////////////// TRADUCAO /////////////////////////////////////////////////////////////////
 
 void traduzStmList (StmList *root){
@@ -346,7 +355,7 @@ void traduzDecl (Decl *root){
 
 	}else if (root->type == funcao){
 		if (root->func != NULL){
-			printfunc(root->func);
+			traduzFunc(root->func);
 		}
 
 	}else if (root->type == if_exp_then_stmList){
@@ -383,9 +392,9 @@ void traduzDecl (Decl *root){
 			printf("}");
 		}
 
-	}else if (root->type == traduz_){
+	}else if (root->type == print_){
 		if(root->expressao!=NULL){
-			printf("traduz (");
+			printf("print (");
 			traduzExpressao(root->expressao);
 			printf(")");
 		}
@@ -416,7 +425,7 @@ void traduzDecl (Decl *root){
 	}
 }
 
-void printfunc (Func *root){
+void traduzFunc (Func *root){
 	if (root->type == id_arglist_dpontos_tipo_stmList ){
 		if (root->argLista != NULL){
 			printf("%s",root->id );
@@ -539,7 +548,7 @@ void traduzExpressao (Expressao *root){
 	}else if (root->type == num_exp){
 		printf("%d ", root->num );
 	}else if (root->type == func_){
-		printfunc(root->func);
+		traduzFunc(root->func);
 	}
 
 }
