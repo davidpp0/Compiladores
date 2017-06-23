@@ -11,6 +11,7 @@ void root(StmList *root){
     printf("Error opening file!\n");
     exit(1);
 	}
+	traduzStmList(root);
 }
 
 void printStmList (StmList *root){
@@ -306,19 +307,19 @@ void traduzStmList (StmList *root){
 	if (root->type == decl_pontovirg ){
 		if (root->decl != NULL){
 			traduzDecl(root->decl);
-			printf(";\n");
+			fprintf(w_file, ";\n");
 		}
 
 	}else if (root->type == decl_pontovirg_stmList){
 		if (root->decl != NULL){
 			traduzDecl(root->decl);
-			printf(";\n");
+			fprintf(w_file, ";\n");
 
 		}
 		if (root->stmList != NULL){
 			
 			traduzStmList(root->stmList);
-			printf("\n");
+			fprintf(w_file, ";\n");
 		}
 	}
 }
@@ -330,7 +331,7 @@ void traduzDecl (Decl *root){
 			traduzIdList(root->idList);
 		}
 		if (root->tipo != NULL){
-			printf(": ");
+			fprintf(w_file,": ");
 			traduzTipo(root->tipo);
 			
 		}
@@ -339,16 +340,17 @@ void traduzDecl (Decl *root){
 		if (root->idList != NULL){
 			traduzIdList(root->idList);
 		}if (root->tipo != NULL){
-			printf(": ");
+			fprintf(w_file, ": ");
 			traduzTipo(root->tipo);
 		}if (root->expressao != NULL){
-			printf("= ");
+			fprintf(w_file, "= ");
 			traduzExpressao(root->expressao);
+
 		}
 
 	}else if (root->type == id_igual_exp){
 		if (root->expressao != NULL){
-			printf("%s = ",root->id);
+			fprintf(w_file,"%s = ",root->id);
 			traduzExpressao(root->expressao);
 		
 		}
@@ -360,63 +362,63 @@ void traduzDecl (Decl *root){
 
 	}else if (root->type == if_exp_then_stmList){
 		if (root->expressao != NULL){
-			printf("if ");
+			fprintf(w_file,"if ");
 			traduzExpressao(root->expressao);
 		}if (root->stmList1 != NULL){
-			printf("then {\n");
+			fprintf(w_file,"then {\n");
 			traduzStmList(root->stmList1);
-			printf("}");
+			fprintf(w_file,"}");
 		}
 
 	}else if (root->type == if_exp_then_stmList_else_stmList){
 		if (root->expressao != NULL){
-			printf("if ");			
+			fprintf(w_file,"if ");			
 			traduzExpressao(root->expressao);
 		}if (root->stmList1 != NULL){
-			printf("then {\n");
+			fprintf(w_file,"then {\n");
 			traduzStmList(root->stmList1);
-			printf("}\n");
+			fprintf(w_file,"}\n");
 		}if (root->stmList2 != NULL){
-			printf("else {\n");
+			fprintf(w_file,"else {\n");
 			traduzStmList(root->stmList2);
-			printf("}");
+			fprintf(w_file,"}");
 		}
 
 	}else if (root->type == while_exp_do_stmList){
 		if (root->expressao != NULL){
-			printf("while ");
+			fprintf(w_file,"while ");
 			traduzExpressao(root->expressao);
-			printf(" do {\n");
+			fprintf(w_file," do {\n");
 		}if (root->stmList1 != NULL){
 			traduzStmList(root->stmList1);
-			printf("}");
+			fprintf(w_file,"}");
 		}
 
 	}else if (root->type == print_){
 		if(root->expressao!=NULL){
-			printf("print (");
+			fprintf(w_file,"print (");
 			traduzExpressao(root->expressao);
-			printf(")");
+			fprintf(w_file,")");
 		}
 
 	}else if (root->type == return_){
 		if(root->expressao!=NULL){
-			printf("return ");
+			fprintf(w_file,"return ");
 			traduzExpressao(root->expressao);
 			
 		}
 	}else if (root->type == input_id){
-		printf("input (");
-		printf("%s", root->id);
-		printf(")");
+		fprintf(w_file,"input (");
+		fprintf(w_file,"%s", root->id);
+		fprintf(w_file,")");
 	}else if (root->type == output_id){
-		printf("output (");
-		printf("%s", root->id);
-		printf(")");
+		fprintf(w_file,"output (");
+		fprintf(w_file,"%s", root->id);
+		fprintf(w_file,")");
 	}else if (root->type == break_){
-		printf("break ");
+		fprintf(w_file,"break ");
 	}else if (root->type == next_){
-		printf("next ");
+		fprintf(w_file,"next ");
 		
 	}else if (root->type == def_id_type){
 		if (root->tipo != NULL){
@@ -428,56 +430,56 @@ void traduzDecl (Decl *root){
 void traduzFunc (Func *root){
 	if (root->type == id_arglist_dpontos_tipo_stmList ){
 		if (root->argLista != NULL){
-			printf("%s",root->id );
-			printf("(");
+			fprintf(w_file,"%s",root->id );
+			fprintf(w_file,"(");
 			traduzArgLista(root->argLista);
-			printf(")");
+			fprintf(w_file,")");
 		}if (root->tipo != NULL){
-			printf(" : ");
+			fprintf(w_file," : ");
 			traduzTipo(root->tipo);
-			printf("{\n" );
+			fprintf(w_file,"{\n" );
 		}if (root->stmList != NULL){
 			traduzStmList(root->stmList);
-			printf("}");
+			fprintf(w_file,"}");
 		}
 
 	}else if (root->type == id_pars_dpontos_tipo_stmList){
 		if (root->tipo != NULL){
-			printf("%s",root->id);
-			printf("() : ");
+			fprintf(w_file,"%s",root->id);
+			fprintf(w_file,"() : ");
 			traduzTipo(root->tipo);
-			printf("{\n" );
+			fprintf(w_file,"{\n" );
 		}if (root->stmList != NULL){
 			traduzStmList(root->stmList);
-			printf("}");
+			fprintf(w_file,"}");
 		}
 
 	}else if (root->type == id_pars){
-		printf("%s() ", root->id);
+		fprintf(w_file,"%s() ", root->id);
 	}else if (root->type == id_arglist){
-		printf("%s(",root->id );
+		fprintf(w_file,"%s(",root->id );
 		if (root->argLista != NULL){
 			traduzArgLista(root->argLista);
-			printf(") ");
+			fprintf(w_file,") ");
 		}
 	}
 }
 
 void traduzIdList(IdList *root){
 	if (root->type == id_){
-		printf("%s", root->id);
+		fprintf(w_file, "%s", root->id );
 
 	}else if (root->type == id_virg_idlist){
-		printf("%s,",root->id);
+		fprintf(w_file,"%s,",root->id);
 		if (root->idList != NULL){
 			traduzIdList(root->idList);						
 		}
 
 	}else if (root->type == num_){
-		printf("%d",root->num );
+		fprintf(w_file,"%d",root->num );
 
 	}else if (root->type == num_idlist){
-		printf("%d", root->num);
+		fprintf(w_file,"%d", root->num);
 		if (root->idList != NULL){
 			traduzIdList(root->idList);
 		}
@@ -487,15 +489,15 @@ void traduzIdList(IdList *root){
 
 void traduzTipo (Tipo *root){
 	if (root->type == int_ ){
-		printf("int ");
+		fprintf(w_file, "int");
 	}else if (root->type == float_){
-		printf("float ");
+		fprintf(w_file, "float");
 	}else if (root->type == string_){
-		printf("string ");
+		fprintf(w_file, "string");
 	}else if (root->type == bool_){
-		printf("bool ");
+		fprintf(w_file, "bool");
 	}else if (root->type == void_){
-		printf("void ");
+		fprintf(w_file, "void");
 	}
 }
     
@@ -503,7 +505,7 @@ void traduzArgLista(ArgLista *root){
 	if (root->type == idlist_dpontos_tipo_argL){
 		if (root->idList != NULL){
 			traduzIdList(root->idList);
-			printf(" : ");
+			fprintf(w_file, " : ");
 			traduzTipo(root->tipo);
 			
 		}
@@ -511,9 +513,9 @@ void traduzArgLista(ArgLista *root){
 	}else if (root->type == idlist_dponstos_tipo_virg_args){
 		if (root->idList != NULL){
 			traduzIdList(root->idList);
-			printf(" : ");
+			fprintf(w_file, " : ");
 			traduzTipo(root->tipo);
-			printf(", ");
+			fprintf(w_file, ", ");
 			traduzArgLista(root->argLista);
 			
 		}
@@ -529,9 +531,9 @@ void traduzArgLista(ArgLista *root){
 void traduzExpressao (Expressao *root){
 
 	if (root->type == id_exp){
-		printf("%s ",root->id);		
+		fprintf(w_file, "%s ",root->id);		
 	}else if (root->type == str_){
-		printf("%s ", root->str );
+		fprintf(w_file, "%s ", root->str );
 	}else if (root->type == exp_op_exp){
 		if (root->expressao1 != NULL){
 			traduzExpressao(root->expressao1);
@@ -542,11 +544,11 @@ void traduzExpressao (Expressao *root){
 		}
 
 	}else if (root->type == bool_lit){
-		printf("%d ", root->booleano);
+		fprintf(w_file, "%d ", root->booleano);
 	}else if (root->type == flt_){
-		printf("%f ", root->flt );
+		fprintf(w_file, "%f ", root->flt );
 	}else if (root->type == num_exp){
-		printf("%d ", root->num );
+		fprintf(w_file, "%d ", root->num );
 	}else if (root->type == func_){
 		traduzFunc(root->func);
 	}
@@ -554,37 +556,37 @@ void traduzExpressao (Expressao *root){
 }
 void traduzOperacao (Operacao *root){
 	if (root->type == soma_){
-		printf("+ ");
+		fprintf(w_file, " + ");
 	}else if (root->type == subtracao_){
-		printf("- ");
+		fprintf(w_file, " - ");
 	}else if (root->type == divisao_){
-		printf("/ ");
+		fprintf(w_file, " / ");
 	}else if (root->type == multiplicacao_){
-		printf("* ");
+		fprintf(w_file, " * ");
 	}else if (root->type == mod_){
-		printf("mod ");
+		fprintf(w_file, " mod ");
 	}else if (root->type == potencia_){
-		printf("^ ");
+		fprintf(w_file, " ^ ");
 	}else if (root->type == igual_){
-		printf("= ");
+		fprintf(w_file, " = ");
 	}else if (root->type == igual_igual){
-		printf("== ");
+		fprintf(w_file, " == ");
 	}else if (root->type == diferente_){
-		printf("!= ");
+		fprintf(w_file, " != ");
 	}else if (root->type == menor_){
-		printf("< ");
+		fprintf(w_file, " < ");
 	}else if (root->type == maior_){
-		printf("> ");
+		fprintf(w_file, " > ");
 	}else if (root->type == menorIgual_){
-		printf("<= ");
+		fprintf(w_file, " <= ");
 	}else if (root->type == maiorIgual_){
-		printf(">= ");
+		fprintf(w_file, " >= ");
 	}else if (root->type == and_){
-		printf("and ");
+		fprintf(w_file, " && ");
 	}else if (root->type == or_){
-		printf("or ");
+		fprintf(w_file, " | ");
 	}else if (root->type == not_){
-		printf("not ");
+		fprintf(w_file, "!");
 	}
 }
 
