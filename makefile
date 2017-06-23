@@ -1,9 +1,9 @@
-CC = gcc -Wall
+CC = gcc -Wall 
 YACC = bison -d -v
 LEX = flex
 
 
-ya : yasin.tab.c lex.yy.c
+compiler : yasin.tab.c lex.yy.c
 	$(CC) $^ compiler.c tree.c -o $@ -lfl
 
 yasin.tab.c : yasin.y
@@ -12,13 +12,13 @@ yasin.tab.c : yasin.y
 lex.yy.c : yalex.lex
 	$(LEX) $^
 
-run : ya
+run : compiler
 	@echo '[example6.ya]'
-	@./ya < example6.ya
+	@./compiler < example6.ya
 	
 
 clean :
-	@$(RM) ya
+	@$(RM) compiler
 	@$(RM) yasin.tab.c yasin.tab.h
 	@$(RM) lex.yy.c
 	@$(RM) yasin.output
