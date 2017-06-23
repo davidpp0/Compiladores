@@ -2,6 +2,9 @@
 #include <string.h>
 
 FILE *w_file;
+int flagprint = 0;
+int flagexpressao1 = 0;
+int flagexpressao2 = 0;
 
 void root(StmList *root){
 	printStmList(root);
@@ -305,68 +308,23 @@ void printOperacao (Operacao *root){
 
 void traduzStmList (StmList *root){
 	if (root->type == decl_pontovirg ){
-		switch(root->decl->type) {
-			case funcao->type=id_arglist_dpontos_tipo_stmList:
-				traduzDecl(root->decl);
-				fprintf(w_file, "\n");
-				break;
-			case funcao->type=id_pars_dpontos_tipo_stmList:
-				traduzDecl(root->decl);
-				fprintf(w_file, "\n");
-				break;
-
-			default:
-				traduzDecl(root->decl);
-				fprintf(w_file, ";\n");
-		}
-		/*if (root->decl->type==funcao && (root->decl->funcao->type=id_arglist_dpontos_tipo_stmList || root->decl->funcao->type=id_pars_dpontos_tipo_stmList )){
-			
-		}
-		else{
-			if(root->decl != NULL){
-				traduzDecl(root->decl);
-				fprintf(w_file, ";\n");
-			}
-
-		}*/
-	}else if (root->type == decl_pontovirg_stmList){
-		switch(root->decl->type) {
-			case funcao->type=id_arglist_dpontos_tipo_stmList:
-				traduzDecl(root->decl);
-				fprintf(w_file, "\n");
-				break;
-			case funcao->type=id_pars_dpontos_tipo_stmList:
-				traduzDecl(root->decl);
-				fprintf(w_file, "\n");
-				break;
-
-			default:
-				traduzDecl(root->decl);
-				if (root->stmList != NULL){
-					traduzStmList(root->stmList);
-					fprintf(w_file, "\n");
-				}
-
-		}
-		/*if (root->decl->type==funcao){
+		if (root->decl != NULL){
 			traduzDecl(root->decl);
-			if (root->stmList != NULL){
-				traduzStmList(root->stmList);
-				fprintf(w_file, "\n");
-			}
+			fprintf(w_file, "\n");
 		}
-		else {
-			if (root->decl != NULL){
-				traduzDecl(root->decl);
-				fprintf(w_file, ";\n");
-	
-				}
-			if (root->stmList != NULL){
-				traduzStmList(root->stmList);
-				fprintf(w_file, "\n");
-			}
-	}*/
-}
+
+	}else if (root->type == decl_pontovirg_stmList){
+		if (root->decl != NULL){
+			traduzDecl(root->decl);
+			fprintf(w_file, "\n");
+
+		}
+		if (root->stmList != NULL){
+			
+			traduzStmList(root->stmList);
+			fprintf(w_file, "\n");
+		}
+	}
 }
 		
 	
@@ -378,6 +336,7 @@ void traduzDecl (Decl *root){
 		}
 		if (root->idList != NULL){
 			traduzIdList(root->idList);
+			fprintf(w_file, ";");
 			
 		}
 
@@ -389,6 +348,7 @@ void traduzDecl (Decl *root){
 		}if (root->expressao != NULL){
 			fprintf(w_file, "= ");
 			traduzExpressao(root->expressao);
+			fprintf(w_file, ";");
 
 		}
 
@@ -396,6 +356,7 @@ void traduzDecl (Decl *root){
 		if (root->expressao != NULL){
 			fprintf(w_file,"%s = ",root->id);
 			traduzExpressao(root->expressao);
+			fprintf(w_file, ";");
 		
 		}
 
@@ -409,23 +370,22 @@ void traduzDecl (Decl *root){
 			fprintf(w_file,"if( ");
 			traduzExpressao(root->expressao);
 			fprintf(w_file, ")");
-			fprintf(w_file, "{\n");
+			fprintf(w_file, "{");
 		}if (root->stmList1 != NULL){
+			fprintf(w_file, "\n");
 			traduzStmList(root->stmList1);
 			fprintf(w_file, "\n");
-			fprintf(w_file,"}");
+			fprintf(w_file,"}\n");
 		}
 
 	}else if (root->type == if_exp_then_stmList_else_stmList){
 		if (root->expressao != NULL){
 			fprintf(w_file,"if(");			
 			traduzExpressao(root->expressao);
-			fprintf(w_file, ")\n");
-			fprintf(w_file,"{");
+			fprintf(w_file, ")");
+			fprintf(w_file,"{\n");
 		}if (root->stmList1 != NULL){
-			fprintf(w_file,"\n");
 			traduzStmList(root->stmList1);
-			fprintf(w_file, "\n");
 			fprintf(w_file,"}\n");
 		}if (root->stmList2 != NULL){
 			fprintf(w_file,"else {\n");
@@ -437,7 +397,7 @@ void traduzDecl (Decl *root){
 		if (root->expressao != NULL){
 			fprintf(w_file,"while( ");
 			traduzExpressao(root->expressao);
-			fprintf(w_file, " )\n");
+			fprintf(w_file, " )");
 			fprintf(w_file, "{\n");
 		}if (root->stmList1 != NULL){
 			traduzStmList(root->stmList1);
@@ -447,30 +407,33 @@ void traduzDecl (Decl *root){
 
 	}else if (root->type == print_){
 		if(root->expressao!=NULL){
+			if (root->expressao->type==func_){
+				flagprint = 1;
+			}
 			fprintf(w_file,"printf(");
 			traduzExpressao(root->expressao);
-			fprintf(w_file,");\n");
+			fprintf(w_file,");");
 		}
 
 	}else if (root->type == return_){
 		if(root->expressao!=NULL){
 			fprintf(w_file,"return ");
 			traduzExpressao(root->expressao);
-			fprintf(w_file, ";\n");
+			fprintf(w_file, ";");
 			
 		}
 	}else if (root->type == input_id){
 		fprintf(w_file,"input (");
 		fprintf(w_file,"%s", root->id);
-		fprintf(w_file,")");
+		fprintf(w_file,");");
 	}else if (root->type == output_id){
 		fprintf(w_file,"output (");
 		fprintf(w_file,"%s", root->id);
-		fprintf(w_file,")");
+		fprintf(w_file,");");
 	}else if (root->type == break_){
-		fprintf(w_file,"break ");
+		fprintf(w_file,"break;");
 	}else if (root->type == next_){
-		fprintf(w_file,"next ");
+		fprintf(w_file,"next;");
 		
 	}else if (root->type == def_id_type){
 		if (root->tipo != NULL){
@@ -505,16 +468,31 @@ void traduzFunc (Func *root){
 		}
 
 	}else if (root->type == id_pars){
+		if (flagprint == 1 || flagexpressao1 == 1 || flagexpressao2 == 1) {
 		fprintf(w_file,"%s() ", root->id);
+		fprintf(w_file,")");
+		}
+		else {
+			fprintf(w_file,"%s() ", root->id);
+			fprintf(w_file,");");
+		}
 	}else if (root->type == id_arglist){
-		fprintf(w_file,"%s(",root->id );
-		if (root->argLista != NULL){
-			traduzArgLista(root->argLista);
-			fprintf(w_file,") ");
+		if (flagprint == 1 || flagexpressao1 == 1 || flagexpressao2 == 1) {
+			fprintf(w_file,"%s(",root->id );
+			if (root->argLista != NULL){
+				traduzArgLista(root->argLista);
+				fprintf(w_file,")");
+			}
+		}
+		else {
+			fprintf(w_file,"%s(",root->id );
+			if (root->argLista != NULL){
+				traduzArgLista(root->argLista);
+				fprintf(w_file,");");
+			}
 		}
 	}
 }
-
 void traduzIdList(IdList *root){
 	if (root->type == id_){
 		fprintf(w_file, "%s", root->id );
@@ -585,10 +563,16 @@ void traduzExpressao (Expressao *root){
 		fprintf(w_file, "%s ", root->str );
 	}else if (root->type == exp_op_exp){
 		if (root->expressao1 != NULL){
+			if (root->expressao1->type==func_){
+				flagexpressao1 = 1;
+			}
 			traduzExpressao(root->expressao1);
 		}if (root->operacao != NULL){
 			traduzOperacao(root->operacao);
 		}if (root->expressao2 != NULL){
+			if (root->expressao2->type==func_){
+				flagexpressao2 = 1;
+			}
 			traduzExpressao(root->expressao2);
 		}
 
