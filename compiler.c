@@ -142,19 +142,19 @@ void printFunc (Func *root){
 		}
 
 	}else if (root->type == id_pars){
-		printf("%s()\n", root->id);
+		printf("%s() ", root->id);
 	}else if (root->type == id_arglist){
 		printf("%s(",root->id );
 		if (root->argLista != NULL){
 			printArgLista(root->argLista);
-			printf(")\n");
+			printf(") ");
 		}
 	}
 }
 
 void printIdList(IdList *root){
 	if (root->type == id_){
-		printf("%s\n", root->id);
+		printf("%s ", root->id);
 
 	}else if (root->type == id_virg_idlist){
 		printf("%s, ",root->id);
@@ -163,7 +163,7 @@ void printIdList(IdList *root){
 		}
 
 	}else if (root->type == num_){
-		printf("%d\n",root->num );
+		printf("%d ",root->num );
 
 	}else if (root->type == num_idlist){
 		printf("%d ", root->num);

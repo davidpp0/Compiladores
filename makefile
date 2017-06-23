@@ -13,8 +13,8 @@ lex.yy.c : yalex.lex
 	$(LEX) $^
 
 run : compiler
-	@echo '[example6.ya]'
-	@./compiler < example6.ya
+	@echo '[example1.ya]'
+	@./compiler < example1.ya
 	
 
 clean :
