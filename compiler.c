@@ -305,43 +305,87 @@ void printOperacao (Operacao *root){
 
 void traduzStmList (StmList *root){
 	if (root->type == decl_pontovirg ){
-		if (root->decl != NULL){
-			traduzDecl(root->decl);
-			fprintf(w_file, ";\n");
-		}
+		switch(root->decl->type) {
+			case funcao->type=id_arglist_dpontos_tipo_stmList:
+				traduzDecl(root->decl);
+				fprintf(w_file, "\n");
+				break;
+			case funcao->type=id_pars_dpontos_tipo_stmList:
+				traduzDecl(root->decl);
+				fprintf(w_file, "\n");
+				break;
 
-	}else if (root->type == decl_pontovirg_stmList){
-		if (root->decl != NULL){
-			traduzDecl(root->decl);
-			fprintf(w_file, ";\n");
-
+			default:
+				traduzDecl(root->decl);
+				fprintf(w_file, ";\n");
 		}
-		if (root->stmList != NULL){
+		/*if (root->decl->type==funcao && (root->decl->funcao->type=id_arglist_dpontos_tipo_stmList || root->decl->funcao->type=id_pars_dpontos_tipo_stmList )){
 			
-			traduzStmList(root->stmList);
-			fprintf(w_file, ";\n");
 		}
-	}
+		else{
+			if(root->decl != NULL){
+				traduzDecl(root->decl);
+				fprintf(w_file, ";\n");
+			}
+
+		}*/
+	}else if (root->type == decl_pontovirg_stmList){
+		switch(root->decl->type) {
+			case funcao->type=id_arglist_dpontos_tipo_stmList:
+				traduzDecl(root->decl);
+				fprintf(w_file, "\n");
+				break;
+			case funcao->type=id_pars_dpontos_tipo_stmList:
+				traduzDecl(root->decl);
+				fprintf(w_file, "\n");
+				break;
+
+			default:
+				traduzDecl(root->decl);
+				if (root->stmList != NULL){
+					traduzStmList(root->stmList);
+					fprintf(w_file, "\n");
+				}
+
+		}
+		/*if (root->decl->type==funcao){
+			traduzDecl(root->decl);
+			if (root->stmList != NULL){
+				traduzStmList(root->stmList);
+				fprintf(w_file, "\n");
+			}
+		}
+		else {
+			if (root->decl != NULL){
+				traduzDecl(root->decl);
+				fprintf(w_file, ";\n");
+	
+				}
+			if (root->stmList != NULL){
+				traduzStmList(root->stmList);
+				fprintf(w_file, "\n");
+			}
+	}*/
+}
 }
 		
 	
 void traduzDecl (Decl *root){
 	if (root->type == idlist_dpontos_tipo ){
+		if (root->tipo != NULL){
+			traduzTipo(root->tipo);
+			
+		}
 		if (root->idList != NULL){
 			traduzIdList(root->idList);
-		}
-		if (root->tipo != NULL){
-			fprintf(w_file,": ");
-			traduzTipo(root->tipo);
 			
 		}
 
 	}else if (root->type == idlist_dpontos_tipo_igual_exp){
-		if (root->idList != NULL){
-			traduzIdList(root->idList);
-		}if (root->tipo != NULL){
-			fprintf(w_file, ": ");
+		if (root->tipo != NULL){
 			traduzTipo(root->tipo);
+		}if (root->idList != NULL){
+			traduzIdList(root->idList);
 		}if (root->expressao != NULL){
 			fprintf(w_file, "= ");
 			traduzExpressao(root->expressao);
@@ -362,49 +406,57 @@ void traduzDecl (Decl *root){
 
 	}else if (root->type == if_exp_then_stmList){
 		if (root->expressao != NULL){
-			fprintf(w_file,"if ");
+			fprintf(w_file,"if( ");
 			traduzExpressao(root->expressao);
+			fprintf(w_file, ")");
+			fprintf(w_file, "{\n");
 		}if (root->stmList1 != NULL){
-			fprintf(w_file,"then {\n");
 			traduzStmList(root->stmList1);
+			fprintf(w_file, "\n");
 			fprintf(w_file,"}");
 		}
 
 	}else if (root->type == if_exp_then_stmList_else_stmList){
 		if (root->expressao != NULL){
-			fprintf(w_file,"if ");			
+			fprintf(w_file,"if(");			
 			traduzExpressao(root->expressao);
+			fprintf(w_file, ")\n");
+			fprintf(w_file,"{");
 		}if (root->stmList1 != NULL){
-			fprintf(w_file,"then {\n");
+			fprintf(w_file,"\n");
 			traduzStmList(root->stmList1);
+			fprintf(w_file, "\n");
 			fprintf(w_file,"}\n");
 		}if (root->stmList2 != NULL){
 			fprintf(w_file,"else {\n");
 			traduzStmList(root->stmList2);
-			fprintf(w_file,"}");
+			fprintf(w_file,"}\n");
 		}
 
 	}else if (root->type == while_exp_do_stmList){
 		if (root->expressao != NULL){
-			fprintf(w_file,"while ");
+			fprintf(w_file,"while( ");
 			traduzExpressao(root->expressao);
-			fprintf(w_file," do {\n");
+			fprintf(w_file, " )\n");
+			fprintf(w_file, "{\n");
 		}if (root->stmList1 != NULL){
 			traduzStmList(root->stmList1);
-			fprintf(w_file,"}");
+			fprintf(w_file, "\n" );
+			fprintf(w_file,"}\n");
 		}
 
 	}else if (root->type == print_){
 		if(root->expressao!=NULL){
-			fprintf(w_file,"print (");
+			fprintf(w_file,"printf(");
 			traduzExpressao(root->expressao);
-			fprintf(w_file,")");
+			fprintf(w_file,");\n");
 		}
 
 	}else if (root->type == return_){
 		if(root->expressao!=NULL){
 			fprintf(w_file,"return ");
 			traduzExpressao(root->expressao);
+			fprintf(w_file, ";\n");
 			
 		}
 	}else if (root->type == input_id){
@@ -429,15 +481,13 @@ void traduzDecl (Decl *root){
 
 void traduzFunc (Func *root){
 	if (root->type == id_arglist_dpontos_tipo_stmList ){
-		if (root->argLista != NULL){
+		if (root->tipo != NULL){
+			traduzTipo(root->tipo);
+		}if (root->argLista != NULL){
 			fprintf(w_file,"%s",root->id );
 			fprintf(w_file,"(");
 			traduzArgLista(root->argLista);
-			fprintf(w_file,")");
-		}if (root->tipo != NULL){
-			fprintf(w_file," : ");
-			traduzTipo(root->tipo);
-			fprintf(w_file,"{\n" );
+			fprintf(w_file,") {\n");
 		}if (root->stmList != NULL){
 			traduzStmList(root->stmList);
 			fprintf(w_file,"}");
@@ -445,9 +495,9 @@ void traduzFunc (Func *root){
 
 	}else if (root->type == id_pars_dpontos_tipo_stmList){
 		if (root->tipo != NULL){
-			fprintf(w_file,"%s",root->id);
-			fprintf(w_file,"() : ");
 			traduzTipo(root->tipo);
+			fprintf(w_file,"%s",root->id);
+			fprintf(w_file,"() ");
 			fprintf(w_file,"{\n" );
 		}if (root->stmList != NULL){
 			traduzStmList(root->stmList);
@@ -489,32 +539,31 @@ void traduzIdList(IdList *root){
 
 void traduzTipo (Tipo *root){
 	if (root->type == int_ ){
-		fprintf(w_file, "int");
+		fprintf(w_file, "int ");
 	}else if (root->type == float_){
-		fprintf(w_file, "float");
+		fprintf(w_file, "float ");
 	}else if (root->type == string_){
-		fprintf(w_file, "string");
+		fprintf(w_file, "char *");
 	}else if (root->type == bool_){
-		fprintf(w_file, "bool");
+		fprintf(w_file, "bool ");
 	}else if (root->type == void_){
-		fprintf(w_file, "void");
+		fprintf(w_file, "void ");
 	}
 }
     
 void traduzArgLista(ArgLista *root){
 	if (root->type == idlist_dpontos_tipo_argL){
 		if (root->idList != NULL){
-			traduzIdList(root->idList);
-			fprintf(w_file, " : ");
 			traduzTipo(root->tipo);
+			traduzIdList(root->idList);
+			
 			
 		}
 
 	}else if (root->type == idlist_dponstos_tipo_virg_args){
 		if (root->idList != NULL){
-			traduzIdList(root->idList);
-			fprintf(w_file, " : ");
 			traduzTipo(root->tipo);
+			traduzIdList(root->idList);
 			fprintf(w_file, ", ");
 			traduzArgLista(root->argLista);
 			
