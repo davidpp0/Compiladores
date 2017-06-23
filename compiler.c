@@ -3,8 +3,11 @@
 
 FILE *w_file;
 int flagprint = 0;
+int flagexpressao = 0;
 int flagexpressao1 = 0;
 int flagexpressao2 = 0;
+int flagid = 0;
+Tipo *tipoant = NULL;
 
 void root(StmList *root){
 	printStmList(root);
@@ -332,6 +335,10 @@ void traduzDecl (Decl *root){
 	if (root->type == idlist_dpontos_tipo ){
 		if (root->tipo != NULL){
 			traduzTipo(root->tipo);
+			tipoant = root->tipo;
+			if (root->idList->type==id_virg_idlist){
+				flagid = 1;
+			}
 			
 		}
 		if (root->idList != NULL){
@@ -380,6 +387,9 @@ void traduzDecl (Decl *root){
 
 	}else if (root->type == if_exp_then_stmList_else_stmList){
 		if (root->expressao != NULL){
+			if (root->expressao->type==func_) {
+				flagexpressao = 1;
+			}
 			fprintf(w_file,"if(");			
 			traduzExpressao(root->expressao);
 			fprintf(w_file, ")");
@@ -395,6 +405,9 @@ void traduzDecl (Decl *root){
 
 	}else if (root->type == while_exp_do_stmList){
 		if (root->expressao != NULL){
+			if (root->expressao->type==func_) {
+				flagexpressao = 1;
+			}
 			fprintf(w_file,"while( ");
 			traduzExpressao(root->expressao);
 			fprintf(w_file, " )");
@@ -477,12 +490,16 @@ void traduzFunc (Func *root){
 			fprintf(w_file,");");
 		}
 	}else if (root->type == id_arglist){
-		if (flagprint == 1 || flagexpressao1 == 1 || flagexpressao2 == 1) {
+		if (flagprint == 1 || flagexpressao == 1 || flagexpressao1 == 1 || flagexpressao2 == 1) {
 			fprintf(w_file,"%s(",root->id );
 			if (root->argLista != NULL){
 				traduzArgLista(root->argLista);
 				fprintf(w_file,")");
 			}
+			flagprint = 0;
+			flagexpressao = 0;
+			flagexpressao1 = 0;
+			flagexpressao2 = 0;
 		}
 		else {
 			fprintf(w_file,"%s(",root->id );
@@ -498,11 +515,19 @@ void traduzIdList(IdList *root){
 		fprintf(w_file, "%s", root->id );
 
 	}else if (root->type == id_virg_idlist){
-		fprintf(w_file,"%s,",root->id);
-		if (root->idList != NULL){
-			traduzIdList(root->idList);						
+		if (flagid == 1 && tipoant != NULL) {	
+			fprintf(w_file,"%s, %s",root->id, (char *) tipoant);
+			if (root->idList != NULL){
+				traduzIdList(root->idList);						
+			}
 		}
-
+		else {
+			printf("123\n");
+			fprintf(w_file,"%s,",root->id);
+			if (root->idList != NULL){
+				traduzIdList(root->idList);						
+			}
+		}
 	}else if (root->type == num_){
 		fprintf(w_file,"%d",root->num );
 
@@ -597,7 +622,7 @@ void traduzOperacao (Operacao *root){
 	}else if (root->type == multiplicacao_){
 		fprintf(w_file, " * ");
 	}else if (root->type == mod_){
-		fprintf(w_file, " mod ");
+		fprintf(w_file, " %% ");
 	}else if (root->type == potencia_){
 		fprintf(w_file, " ^ ");
 	}else if (root->type == igual_){
