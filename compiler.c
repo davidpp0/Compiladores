@@ -11,7 +11,7 @@ Tipo *tipoant = NULL;
 
 void root(StmList *root){
 	printStmList(root);
-	w_file = fopen("yac.out", "w");
+	w_file = fopen("yac.c", "w");
 	if (w_file == NULL)
 	{
     printf("Error opening file!\n");
