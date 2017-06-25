@@ -1,4 +1,4 @@
-CC = gcc-6 -Wall 
+CC = gcc -Wall 
 YACC = bison -d -v
 LEX = flex
 
@@ -15,7 +15,7 @@ run : compiler
 	@echo '[example6.ya]'
 	@./compiler < example6.ya
 	indent -br -brf -ce yac.c -o yac2.c
-	gcc-6 yac2.c -o yac2.out
+	gcc-6 -Wall yac2.c -o yac2.out
 	./yac2.out	
 
 clean :
@@ -23,4 +23,4 @@ clean :
 	@$(RM) yasin.tab.c yasin.tab.h
 	@$(RM) lex.yy.c
 	@$(RM) yasin.output
-	@$(RM) yac.c yac2.c
+	@$(RM) yac.c yac2.c yac2.out

@@ -9,6 +9,6 @@ factrec (n: int) : int {
   return b;
 };
 
-main () : void {
+main () : int {
   print(factrec(3));
 };  
